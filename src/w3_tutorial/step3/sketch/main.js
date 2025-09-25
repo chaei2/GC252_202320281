@@ -32,8 +32,9 @@ function draw() {
   dBall.show();
 
   // 마우스 따라가는 원
-  fill('black');
-  noStroke();
+  stroke('white');
+  noFill();
+  strokeWeight(5);
   circle(mouseX, mouseY, 50);
 }
 
