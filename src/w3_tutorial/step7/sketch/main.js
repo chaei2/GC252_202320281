@@ -6,30 +6,24 @@ let balls = [];
 
 function setup() {
   createCanvas(600, 400);
+
   balls.push(new Ball(0.5 * width, 0.5 * height, 50, 8, pallete[0]));
   balls.push(new Ball(0.5 * width, 0.5 * height, 100, 8, pallete[1]));
   balls.push(new Ball(0.5 * width, 0.5 * height, 140, 8, pallete[2]));
   balls.push(new Ball(0.5 * width, 0.5 * height, 200, 8, pallete[3]));
+
+  for (let n = 0; n < 20; n++) {
+    balls.push(
+      new Ball(0.5 * width, 0.5 * height, 100, 8, pallete[n % pallete.length])
+    );
+  }
 }
 
 function draw() {
   background(127);
 
-  if (mouseIsPressed) {
-    createBall();
-  }
-  // 방법1
-  // for (let idx = 0; idx < balls.length; idx++) {
-  //   balls[idx].update();
-  //   balls[idx].resolveWallCollision();
-  //   balls[idx].show();
-  // }
-
-  // 방법2
-  // for (let aBall of balls) {
-  //   aBall.update();
-  //   aBall.resolveWallCollision();
-  //   aBall.show();
+  // if (mouseIsPressed) {
+  //   createBall();
   // }
 
   // 방법3 forEach
@@ -49,6 +43,11 @@ function draw() {
 // 무조건 라디안을 사용함
 function mousePressed() {
   // createBall();
+  for (let idx = balls.length - 1; idx >= 0; idx--) {
+    if (balls[idx].isHovered()) {
+      balls.splice(idx, 1);
+    }
+  }
 }
 
 function createBall() {
