@@ -1,5 +1,5 @@
 // 네모 등속 운동 버전
-let pallete = ['#3C467B', '#50589C', '#636CCB', '#6E8CFB'];
+let pallete = ['#3B0270', '#6F00FF', '#E9B3FB', '#FFF1F1'];
 
 let emitters = [];
 let gravity;
