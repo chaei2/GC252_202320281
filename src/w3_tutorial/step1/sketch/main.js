@@ -1,3 +1,4 @@
+// 교수님 영상 step 2까지 봄
 // 옛방식
 // var ballPosX;
 
