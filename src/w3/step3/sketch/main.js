@@ -5,8 +5,8 @@ let ps = [];
 function setup() {
   createCanvas(800, 600);
 
-  for (let n = 0; n < 1500; n++) {
-    ps.push(new Particle(random(width), random(height), 20));
+  for (let n = 0; n < 2000; n++) {
+    ps.push(new Particle(0.5 * width, 0.5 * height, 30, random(1, 5), 20));
   }
 }
 
@@ -30,7 +30,8 @@ function draw() {
   // });
 
   ps.forEach((aParticle, idx) => {
+    aParticle.applyGravity(0, 0.005);
+    aParticle.update();
     aParticle.drawRect();
-   
   });
 }
