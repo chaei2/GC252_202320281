@@ -3,7 +3,7 @@ class Ball {
   vel;
   diameter;
   colour;
-  isMouseInside = false;
+  isMouseInside;
 
   // random2D unit => 길이가 1짜리인 랜덤 벡터
   // mag() 메그닉튜드 => 길이가 몇인지 알려줌
@@ -14,6 +14,7 @@ class Ball {
     this.vel = p5.Vector.random2D().setMag(speed);
     this.diameter = diameter;
     this.colour = colour;
+    this.isMouseInside = false;
     // console.log('this.daimeter', this.diameter);
   }
 
