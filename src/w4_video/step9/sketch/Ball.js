@@ -15,7 +15,6 @@ class Ball {
     this.isGrabbbed = false;
     this.grabOffset = createVector(0, 0);
     this.mass = Math.PI * (this.diameter / 2) ** 2;
-    // 면적 공식이  pI * r(2=== 제곱임)
     this.acc = createVector(0, 0);
   }
 
@@ -68,6 +67,50 @@ class Ball {
     }
   }
 
+  resolveBallCollision(other) {
+    const dist = p5.Vector.dist(this.pos, other.pos);
+    const minDist = (this.diameter + other.diameter) / 2;
+    if (dist < minDist) {
+      // 위치 보정
+      const toOtherVec = p5.Vector.sub(other.pos, this.pos);
+      const diff = minDist - dist;
+      const correctionVec = p5.Vector.setMag(toOtherVec, diff / 2);
+      other.pos.add(correctionVec);
+      this.pos.sub(correctionVec);
+
+      const normalVec = p5.Vector.setMag(toOtherVec, 1);
+
+      // 속도 보정
+      const vx1Ref = normalVec.dot(this.vel);
+      const vx2Ref = normalVec.dot(other.vel);
+
+      const denominator = this.mass + other.mass;
+      const vx1After =
+        (vx1Ref * (this.mass - other.mass) + 2 * other.mass * vx2Ref) /
+        denominator;
+      const vx2After =
+        (vx2Ref * (other.mass - this.mass) + 2 * this.mass * vx1Ref) /
+        denominator;
+
+      const vx1Vec = p5.Vector.mult(normalVec, vx1After);
+      const vx2Vec = p5.Vector.mult(normalVec, vx2After);
+
+      const tangentVec = p5.Vector.rotate(normalVec, Math.PI * 0.5);
+
+      const vy1Ref = tangentVec.dot(this.vel);
+      const vy2Ref = tangentVec.dot(other.vel);
+
+      const vy1Vec = p5.Vector.mult(tangentVec, vy1Ref);
+      const vy2Vec = p5.Vector.mult(tangentVec, vy2Ref);
+
+      const newVel1 = p5.Vector.add(vx1Vec, vy1Vec);
+      const newVel2 = p5.Vector.add(vx2Vec, vy2Vec);
+
+      this.vel.set(newVel1);
+      other.vel.set(newVel2);
+    }
+  }
+
   isMouseInside(x, y) {
     const dx = x - this.pos.x;
     const dy = y - this.pos.y;
@@ -109,16 +152,16 @@ class Ball {
 
   showDebug() {
     push();
-    stroke('white');
+    stroke("white");
     line(
       this.pos.x,
       this.pos.y,
       this.pos.x + this.vel.x * 10,
       this.pos.y + this.vel.y * 10
     );
-    stroke('red');
+    stroke("red");
     line(this.pos.x, this.pos.y, this.pos.x + this.vel.x * 10, this.pos.y);
-    stroke('green');
+    stroke("green");
     line(this.pos.x, this.pos.y, this.pos.x, this.pos.y + this.vel.y * 10);
     pop();
   }

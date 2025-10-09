@@ -1,11 +1,9 @@
 const palette = ['#134686', '#ED3F27', '#FEB21A', '#FDF4E3'];
 
-const ballNum = 5;
+const ballNum = 20;
 const balls = [];
 const diameter = 100;
 const speed = 5;
-// const gravity = 0.1;
-let gravity;
 const restitution = 0.5;
 
 let hoveredBall = null;
@@ -16,7 +14,16 @@ let lastVy = 0;
 const sampleNum = 10;
 let mouseDeltas = [];
 
+let gravity;
 let wind;
+
+// mult() 와 스칼라
+// mult(): 벡터와 스칼라를 곱함.
+// mult(n), (v, n), (v, n, target)
+// pVector = v , float = n, target = 결과를 저장할 pVector
+// 스칼라는 크기만 있고, 방향이 없는 값을 의미
+
+// tangentVector = 주어진 점에서 곡선 또는 곡면에 접어드는 벡터
 
 function setup() {
   createCanvas(700, 800);
@@ -32,8 +39,6 @@ function setup() {
   gravity = createVector(0, 0.1);
   wind = createVector(0, 0);
 }
-
-// 0~1사이로 나오게 두 번 나누는 정규화
 
 function draw() {
   background(0);
@@ -52,13 +57,15 @@ function draw() {
     const normalizedWindMag = windMag / (0.5 * width);
     wind.setMag(1000 * normalizedWindMag);
   }
-  // f = m * a 힘은 질량 곱하기 가속도다.
-  // f / m = a
 
-  balls.forEach((aBall) => {
+  balls.forEach((aBall, idx) => {
     aBall.applyForce(wind);
     aBall.applyGravity(gravity);
     aBall.update();
+    for (let otherIdx = idx + 1; otherIdx < balls.length; otherIdx++) {
+      const otherBalls = balls[otherIdx];
+      aBall.resolveBallCollision(otherBalls);
+    }
     aBall.resoveWallCollision();
   });
 
