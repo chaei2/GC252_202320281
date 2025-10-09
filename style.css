@@ -1,0 +1,49 @@
+/* 선택자가 겹치는 경우, 기본적으로 나중에 작성된 스타일 적용됨
+선택지가 다르지만 요소가 곂치는 경우, 선택자 우선순위에 의해 적용된 스타일이 결정됨
+아이디 선택자> 클래스 선택자 > 태그 선택자 */
+
+/* px = 모니터 상의 화소 하나 크기에 대응하는 절대적 크기
+rem = <html> 태그의 font-size 에 대응하는 상대적인 크기
+em = 부모태그의 font-size에 대응하는 상대적인 크기 */
+
+/* span 일정부분 스타일화 해서 적용하거나 그룹화할때 씀 */
+h2,
+a,
+li {
+  /* text-align: justify; === 양끝 정렬한다.(마지막 줄 제외) */
+  color: darkblue;
+  /* color에는 다양한 사용 색상 설정 가능
+  1. color: 'red'
+  2. color: #FF0000;
+  3. color: rgb(100%, 0%, 0%); */
+}
+
+* {
+  font-family: Montserrat;
+  html {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  li,
+  a {
+    font-size: 1rem;
+  }
+}
+
+/* 인라인을 블록으로 바꾸는 방법 */
+span {
+  align-content: center;
+  text-align: center;
+  display: block;
+  block-size: 3rem;
+  font-size: 1.2rem;
+  color: darkslateblue;
+  /* border: 0.3rem solid darkviolet; */
+  border-width: 0.3rem;
+  border-style: outset;
+  border-color: darkviolet;
+}
