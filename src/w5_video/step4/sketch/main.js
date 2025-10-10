@@ -34,8 +34,9 @@ function draw() {
   circle(target.x, target.y, 16);
 
   vehicles.forEach((aVehicle) => {
-    aVehicle.seek(target, 1);
-    aVehicle.separate(vehicles, 3);
+    // aVehicle.seek(target, 1);
+    aVehicle.separate(vehicles, 5);
+    aVehicle.cohere(vehicles, 1);
   });
 
   vehicles.forEach((aVehicle) => {

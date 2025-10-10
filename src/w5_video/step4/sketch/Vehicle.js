@@ -1,11 +1,12 @@
 class Vehicle {
-  constructor(x, y, maxSpeed = 5, maxForce = 0.1) {
+  constructor(x, y, maxSpeed = 5, maxForce = 0.1, friendRad = 100) {
     this.pos = createVector(x, y);
     this.vel = createVector(0, 0);
     this.acc = createVector(0, 0);
     this.r = 20;
     this.maxSpeed = maxSpeed;
     this.maxForce = maxForce;
+    this.friendRad = friendRad;
   }
 
   applyForce(force) {
@@ -30,27 +31,38 @@ class Vehicle {
 
   separate(allVehicles, factor = 1) {
     const sum = createVector(0, 0);
-    // let count = 0;
+
     allVehicles.forEach((aVehicle) => {
       if (aVehicle !== this) {
         const dist = p5.Vector.dist(this.pos, aVehicle.pos);
-        if (dist > 0 && dist < this.r * 2) {
+        if (dist > 0 && dist < this.r * 3) {
           const towardMe = p5.Vector.sub(this.pos, aVehicle.pos);
           towardMe.div(dist);
           sum.add(towardMe);
-          // count++;
         }
       }
     });
     if (sum.mag() > 0) {
-      // if (count > 0) {
-      // sum.div(count);
-      // const desired = sum.setMag(this.maxSpeed);
-      // const steering = p5.Vector.sub(desired, this.vel);
-      // steering.limit(this.maxForce);
-      // this.applyForce(steering);
-      // sum.div(count);
       sum.add(this.pos);
+      this.seek(sum, factor);
+    }
+  }
+
+  cohere(allVehicles, factor = 1) {
+    let cnt = 0;
+    const sum = createVector(0, 0);
+
+    allVehicles.forEach((aVehicle) => {
+      if (aVehicle !== this) {
+        const dist = p5.Vector.dist(this.pos, aVehicle.pos);
+        if (dist < this.friendRad) {
+          sum.add(aVehicle.pos);
+          cnt++;
+        }
+      }
+    });
+    if (cnt > 0) {
+      sum.div(cnt);
       this.seek(sum, factor);
     }
   }
