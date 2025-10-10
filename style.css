@@ -47,3 +47,12 @@ span {
   border-style: outset;
   border-color: darkviolet;
 }
+
+/* background-> color, image, position, size, repeat */
+background {
+  color: green;
+  image: url('background.jpg');
+  position: center;
+  size: cover;
+  repeat: no-repeat;
+}

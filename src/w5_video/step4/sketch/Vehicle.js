@@ -1,9 +1,9 @@
 class Vehicle {
-  constructor(x, y, maxSpeed = 5, maxForce = 0.1, friendRad = 100) {
+  constructor(x, y, maxSpeed = 5, maxForce = 0.1, friendRad = 70) {
     this.pos = createVector(x, y);
     this.vel = createVector(0, 0);
     this.acc = createVector(0, 0);
-    this.r = 20;
+    this.r = 10;
     this.maxSpeed = maxSpeed;
     this.maxForce = maxForce;
     this.friendRad = friendRad;
@@ -14,7 +14,6 @@ class Vehicle {
   }
 
   update() {
-    // this.showAcc();
     this.vel.add(this.acc);
     this.vel.limit(this.maxSpeed);
     this.pos.add(this.vel);
@@ -31,7 +30,6 @@ class Vehicle {
 
   separate(allVehicles, factor = 1) {
     const sum = createVector(0, 0);
-
     allVehicles.forEach((aVehicle) => {
       if (aVehicle !== this) {
         const dist = p5.Vector.dist(this.pos, aVehicle.pos);
@@ -51,7 +49,6 @@ class Vehicle {
   cohere(allVehicles, factor = 1) {
     let cnt = 0;
     const sum = createVector(0, 0);
-
     allVehicles.forEach((aVehicle) => {
       if (aVehicle !== this) {
         const dist = p5.Vector.dist(this.pos, aVehicle.pos);
@@ -63,6 +60,51 @@ class Vehicle {
     });
     if (cnt > 0) {
       sum.div(cnt);
+      this.seek(sum, factor);
+    }
+  }
+
+  // 방식을 바꿔서 가까이 있는 친구는 강하게, 멀리 있는 친구는 약하게
+  cohere2(allVehicles, factor = 1) {
+    let cnt = 0;
+    const sum = createVector(0, 0);
+    allVehicles.forEach((aVehicle) => {
+      if (aVehicle !== this) {
+        const dist = p5.Vector.dist(this.pos, aVehicle.pos);
+        if (dist < this.friendRad) {
+          const towardOther = p5.Vector.sub(aVehicle.pos, this.pos);
+          // vector = 실제로 바뀌진 않음
+          //도출된 towardOther = 실제로 바뀜 벡터를 거리에 반비례하도록 만듦
+          // 길이는 달라지되, 방향은 같음
+          towardOther.div(dist);
+          sum.add(towardOther);
+          cnt++;
+        }
+      }
+    });
+    if (cnt > 0) {
+      sum.div(cnt);
+      sum.add(this.pos);
+      this.seek(sum, factor);
+    }
+  }
+
+  align(allVehicles, factor = 1) {
+    let cnt = 0;
+    const sum = createVector(0, 0);
+    allVehicles.forEach((aVehicle) => {
+      if (aVehicle !== this) {
+        const dist = p5.Vector.dist(this.pos, aVehicle.pos);
+        if (dist < this.friendRad) {
+          // sum.add(aVehicle.vel);
+          sum.add(p5.Vector.div(aVehicle.vel), dist);
+          cnt++;
+        }
+      }
+    });
+    if (cnt > 0) {
+      sum.div(cnt);
+      sum.add(this.pos);
       this.seek(sum, factor);
     }
   }
@@ -81,7 +123,7 @@ class Vehicle {
     rotate(angle);
     noFill();
     stroke(255);
-    circle(0, 0, 2 * this.r);
+    // circle(0, 0, 2 * this.r);
     noStroke();
     fill(255);
     beginShape();
@@ -110,3 +152,5 @@ class Vehicle {
     pop();
   }
 }
+
+// 위치는 절대값, 속도는 상대값

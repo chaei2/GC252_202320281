@@ -19,7 +19,8 @@ function draw() {
         mouseX + random(-1, 1),
         mouseY + random(-1, 1),
         3,
-        0.1
+        0.1,
+        40
       );
       vehicles.push(newVehicle);
     } else {
@@ -35,8 +36,10 @@ function draw() {
 
   vehicles.forEach((aVehicle) => {
     // aVehicle.seek(target, 1);
-    aVehicle.separate(vehicles, 5);
-    aVehicle.cohere(vehicles, 1);
+    aVehicle.separate(vehicles, 1);
+    // aVehicle.cohere(vehicles, 0.5);
+    aVehicle.cohere2(vehicles, 0.5);
+    aVehicle.align(vehicles, 0.5);
   });
 
   vehicles.forEach((aVehicle) => {
