@@ -68,7 +68,9 @@ body {
 }
 
 div {
-  /* justify-content: center; */
+  margin-inline: auto;
+  justify-content: center;
+  /* ??? div 정렬 가운데로 안되는데..? */
   margin: 1rem;
   width: 20rem;
   height: 21rem;
