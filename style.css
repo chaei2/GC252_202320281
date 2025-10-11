@@ -11,7 +11,7 @@ h2 {
   padding-left: 20px;
   color: rgb(140, 140, 140);
 }
-
+p,
 a,
 li {
   /* text-align: justify; === 양끝 정렬한다.(마지막 줄 제외) */
@@ -49,13 +49,13 @@ span {
   align-content: center;
   text-align: center;
   display: block;
-  block-size: 3rem;
+  block-size: 15rem;
   font-size: 1.2rem;
   color: white;
   /* border: 0.3rem solid darkviolet; */
-  border-width: 0.3rem;
-  border-style: outset;
-  border-color: white;
+  /* border-width: 2rem; */
+  /* border-style: outset; */
+  /* border-color: white; */
 }
 
 /* background-> color, image, position, size, repeat */
@@ -68,6 +68,7 @@ body {
 }
 
 div {
+  /* align-items: center; */
   margin-inline: auto;
   justify-content: center;
   /* ??? div 정렬 가운데로 안되는데..? */
