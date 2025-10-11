@@ -34,7 +34,13 @@ li {
 
   li,
   a {
+    text-decoration: none;
     font-size: 1rem;
+  }
+  a:hover {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: plum;
   }
 }
 
@@ -55,13 +61,24 @@ span {
 /* background-> color, image, position, size, repeat */
 body {
   background-color: black;
-}
-
-div {
   background-image: url('./bill-cipher.webp');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+div {
+  /* justify-content: center; */
+  margin: 1rem;
+  width: 20rem;
+  height: 21rem;
+  float: left;
+  border: 3px solid rgb(72, 61, 139, 0.4);
+  /* 이미지 투명도 낮추는건 0~1 사이 */
+}
+
+.outer-div {
+  /* align-items: center; */
 }
 
 /* ㅇㄴ 이미지 투명하게 어케함;;
