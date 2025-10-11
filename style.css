@@ -7,11 +7,15 @@ rem = <html> 태그의 font-size 에 대응하는 상대적인 크기
 em = 부모태그의 font-size에 대응하는 상대적인 크기 */
 
 /* span 일정부분 스타일화 해서 적용하거나 그룹화할때 씀 */
-h2,
+h2 {
+  padding-left: 20px;
+  color: rgb(140, 140, 140);
+}
+
 a,
 li {
   /* text-align: justify; === 양끝 정렬한다.(마지막 줄 제외) */
-  color: darkblue;
+  color: white;
   /* color에는 다양한 사용 색상 설정 가능
   1. color: 'red'
   2. color: #FF0000;
@@ -41,18 +45,26 @@ span {
   display: block;
   block-size: 3rem;
   font-size: 1.2rem;
-  color: darkslateblue;
+  color: white;
   /* border: 0.3rem solid darkviolet; */
   border-width: 0.3rem;
   border-style: outset;
-  border-color: darkviolet;
+  border-color: white;
 }
 
 /* background-> color, image, position, size, repeat */
-background {
-  color: green;
-  image: url('background.jpg');
-  position: center;
-  size: cover;
-  repeat: no-repeat;
+body {
+  background-color: black;
 }
+
+div {
+  background-image: url('./bill-cipher.webp');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* ㅇㄴ 이미지 투명하게 어케함;;
+.bill-cipher {
+  opacity: 0.3;
+} */
