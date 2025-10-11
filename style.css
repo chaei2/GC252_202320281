@@ -7,10 +7,28 @@ rem = <html> 태그의 font-size 에 대응하는 상대적인 크기
 em = 부모태그의 font-size에 대응하는 상대적인 크기 */
 
 /* span 일정부분 스타일화 해서 적용하거나 그룹화할때 씀 */
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  } /* 시작 상태: 불투명 */
+  50% {
+    opacity: 0;
+  } /* 50% 시점: 투명 */
+  100% {
+    opacity: 1;
+  } /* 종료 상태: 불투명 */
+}
+
+.blinkingText {
+  animation: blink 4s infinite;
+}
+
 h2 {
   padding-left: 20px;
   color: rgb(140, 140, 140);
 }
+
 p,
 a,
 li {
@@ -52,7 +70,7 @@ span {
   align-content: center;
   text-align: center;
   display: block;
-  block-size: 15rem;
+  block-size: 19rem;
   font-size: 1.2rem;
   color: white;
   /* border: 0.3rem solid darkviolet; */
