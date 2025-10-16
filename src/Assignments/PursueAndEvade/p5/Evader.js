@@ -52,14 +52,20 @@ class Evader {
     this.acc.add(force);
   }
 
-  seek(target) {}
-
-  flee(target) {
+  seek(target) {
     let desired = p5.Vector.sub(target, this.pos);
     desired.setMag(this.maxSpeed);
     let steering = p5.Vector.sub(desired, this.vel);
     steering.limit(this.maxForce);
-    this.applyForce(steering.mult(-1));
+  }
+
+  flee(target) {
+    this.seek.applyForce(streeing.mult(-1));
+    // let desired = p5.Vector.sub(target, this.pos);
+    // desired.setMag(this.maxSpeed);
+    // let steering = p5.Vector.sub(desired, this.vel);
+    // steering.limit(this.maxForce);
+    // this.applyForce(steering.mult(-1));
     return steering;
   }
 
