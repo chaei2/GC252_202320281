@@ -41,16 +41,30 @@ class Pursuer {
     }
   }
 
-  update() {}
+  update() {
+    this.vel.add(this.acc);
+    this.vel.limit(this.maxSpeed);
+    this.pos.add(this.vel);
+    this.acc.mult(0);
+  }
 
-  applyForce(force) {}
+  applyForce(force) {
+    this.acc.add(force);
+  }
 
-  seek(target) {}
+  seek(target) {
+    let desired = p5.Vector.sub(target, this.pos);
+    desired.setMag(this.maxSpeed);
+    let steering = p5.Vector.sub(desired, this.vel);
+    steering.limit(this.maxForce);
+    this.applyForce(steering);
+  }
 
   pursue(evaders, prediction = 30) {
     const closest = this.findClosestEvader(evaders);
     if (!closest) return;
     const predictedVel = p5.Vector.mult(closest.vel, prediction);
+    this.seek(predictedVel);
     // 더 작성해야 작동합니다.
   }
 

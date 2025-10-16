@@ -28,6 +28,7 @@ class Vehicle {
     steering.mult(-1);
 
     this.applyForce(steering);
+    return steering;
   }
 
   wrapCoordinates() {
