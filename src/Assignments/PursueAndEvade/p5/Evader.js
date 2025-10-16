@@ -69,6 +69,9 @@ class Evader {
     const predictedVel = p5.Vector.mult(closest.vel, prediction);
     let futurePos = p5.Vector.add(closest.pos, predictedVel);
     this.flee(futurePos);
+    this.flee(closest.pos);
+    this.flee(p5.Vector.add(closest.pos, predictedVel));
+    this.flee(futurePos).limit(this.maxForce);
     return predictedVel;
     // 더 작성해야 작동합니다.
   }
