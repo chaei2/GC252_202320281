@@ -107,7 +107,6 @@ span {
 /* background-> color, image, position, size, repeat */
 body {
   background-color: black;
-
   background-image: url('./image/bill-cipher.webp');
   background-position: top center;
   background-size: cover;
