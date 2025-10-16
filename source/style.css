@@ -95,7 +95,7 @@ span {
   align-content: center;
   text-align: center;
   display: block;
-  block-size: 23rem;
+  block-size: 25rem;
   font-size: 1.2rem;
   color: white;
   /* border: 0.3rem solid darkviolet; */
@@ -114,15 +114,16 @@ body {
 }
 
 div {
+  background-color: rgb(0, 0, 0, 0.15);
   /* align-items: center; */
   margin-inline: auto;
   justify-content: center;
   /* ??? div 정렬 가운데로 안되는데..? */
   margin: 1rem;
   width: 19rem;
-  height: 21rem;
+  height: 23.5rem;
   float: left;
-  border: 3px solid rgb(72, 61, 139, 0.4);
+  border: 3px solid rgb(72, 61, 139, 0.1);
   /* 이미지 투명도 낮추는건 0~1 사이 */
 }
 

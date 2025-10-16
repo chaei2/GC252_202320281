@@ -1,23 +1,28 @@
-const points = [];
-const pointsNum = 10;
+let animal;
 let mouse;
+const showFlags = [
+  false,
+  false,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+];
 
 function setup() {
   createCanvas(600, 800);
 
-  colorMode(HSB, 360, 100, 100);
-  for (let n = 0; n < pointsNum; n++) {
-    const x = width / 2;
-    const y = height / 4 + 50 * n;
-    const hue = map(n, 0, pointsNum - 1, 0, 240);
-    const colour = color(hue, 100, 100);
-    const options = {
-      colour: colour,
-      distConstraint: 50,
-    };
-    const newPoint = new Point(x, y, options);
-    points.push(newPoint);
-  }
+  animal = new Animal(
+    width / 2,
+    height / 4,
+    30,
+    // [40, 60, 30, 60, 30, 60, 30, 60, 30, 15, 7.5, 3]
+    [30, 40, 35, 35, 35, 35, 35, 35, 35, 35, 30, 25, 20, 15, 10, 5]
+  );
 
   mouse = createVector(width / 2, height / 4);
 }
@@ -28,18 +33,25 @@ function draw() {
   if (mouseIsPressed) {
     mouse.set(mouseX, mouseY);
   }
-  points[0].setPos(mouse);
 
-  points.forEach((aPoint, idx) => {
-    if (idx > 0) {
-      aPoint.constrainedBy(points[idx - 1], true);
-    }
-  });
+  animal.setHeadPos(mouse);
+  animal.update();
+  if (showFlags[0]) animal.showSpine();
+  if (showFlags[1]) animal.showDistConstraint();
+  if (showFlags[2]) animal.showThickness();
+  if (showFlags[3]) {
+    animal.showPtOnThicknessCW();
+    animal.showPtOnThicknessCCW();
+  }
+  if (showFlags[4]) {
+    animal.showBodyShape();
+    animal.showEyes();
+  }
+}
 
-  points[0].setHeading(points[1].heading);
-
-  points.forEach((aPoint) => {
-    aPoint.show();
-    aPoint.showDistConstraint();
-  });
+function keyPressed() {
+  const num = parseInt(key);
+  if (!isNaN(num)) {
+    showFlags[num] = !showFlags[num];
+  }
 }
