@@ -41,7 +41,12 @@ class Evader {
     }
   }
 
-  update() {}
+  update() {
+    this.vel.add(this.acc);
+    this.vel.limit(this.maxSpeed);
+    this.pos.add(this.vel);
+    this.acc.mult(0);
+  }
 
   applyForce(force) {}
 

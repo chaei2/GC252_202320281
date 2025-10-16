@@ -64,7 +64,9 @@ class Pursuer {
     const closest = this.findClosestEvader(evaders);
     if (!closest) return;
     const predictedVel = p5.Vector.mult(closest.vel, prediction);
-    this.seek(predictedVel);
+    let futurePos = p5.Vector.add(closest.pos, predictedVel);
+    this.seek(futurePos);
+
     // 더 작성해야 작동합니다.
   }
 
