@@ -7,6 +7,31 @@ rem = <html> 태그의 font-size 에 대응하는 상대적인 크기
 em = 부모태그의 font-size에 대응하는 상대적인 크기 */
 
 /* span 일정부분 스타일화 해서 적용하거나 그룹화할때 씀 */
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+KR&display=swap');
+
+@font-face {
+  font-family: 'Montserrat', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+} */
+
+/* // <weight>: Use a value from 100 to 900
+// <uniquifier>: Use a unique and descriptive class name */
+
+.montserrat-regular {
+  font-family: 'Montserrat', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.montserrat-bold {
+  font-family: 'Montserrat', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
 
 @keyframes blink {
   0% {
@@ -41,7 +66,7 @@ li {
 }
 
 * {
-  font-family: Montserrat;
+  font-family: Montserrat, 'Noto Sans KR', sans-serif;
   html {
     font-size: 32px;
   }
