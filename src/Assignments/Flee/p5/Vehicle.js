@@ -1,5 +1,5 @@
 class Vehicle {
-  constructor(x, y, maxSpeed = 5, maxForce = 0.01) {
+  constructor(x, y, maxSpeed = 5, maxForce = 0.1) {
     this.pos = createVector(x, y);
     this.vel = createVector(0, 0);
     this.acc = createVector(0, 0);
@@ -8,13 +8,31 @@ class Vehicle {
     this.maxForce = maxForce;
   }
 
-  update() {}
+  update() {
+    this.vel.add(this.acc);
+    this.vel.limit(this.maxSpeed);
+    this.pos.add(this.vel);
+    this.acc.mult(0);
+  }
 
-  applyForce(force) {}
+  applyForce(force) {
+    this.acc.add(force);
+  }
 
-  flee(target) {}
+  flee(target) {
+    let desired = p5.Vector.sub(target, this.pos);
+    desired.setMag(this.maxSpeed);
+    let steering = p5.Vector.sub(desired, this.vel);
+    steering.limit(this.maxForce);
+    this.applyForce(steering.mult(-1));
+  }
 
-  wrapCoordinates() {}
+  wrapCoordinates() {
+    if (this.pos.x > width) this.pos.x = 0;
+    if (this.pos.y > height) this.pos.y = 0;
+    if (this.pos.x < 0) this.pos.x = width;
+    if (this.pos.y < 0) this.pos.y = height;
+  }
 
   show() {
     const angle = this.vel.heading();
