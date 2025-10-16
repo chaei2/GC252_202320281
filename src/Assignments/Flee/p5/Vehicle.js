@@ -22,9 +22,12 @@ class Vehicle {
   flee(target) {
     let desired = p5.Vector.sub(target, this.pos);
     desired.setMag(this.maxSpeed);
+
     let steering = p5.Vector.sub(desired, this.vel);
     steering.limit(this.maxForce);
-    this.applyForce(steering.mult(-1));
+    steering.mult(-1);
+
+    this.applyForce(steering);
   }
 
   wrapCoordinates() {
