@@ -6,6 +6,10 @@ class Point {
     this.distConstraint = options.distConstraint || 50;
     this.heading = 0;
     this.thickness = thickness;
+    this.angleConstraint = options.angleConstraint || [
+      radians(150),
+      radians(210),
+    ];
   }
 
   setPos(pos) {
@@ -23,6 +27,32 @@ class Point {
       const newPos = p5.Vector.add(toMe, other.pos);
       this.pos.set(newPos);
       this.setHeading(toMe.mult(-1).heading());
+    }
+  }
+
+  angleConstrainedBy(parent, grandParent) {
+    const vecParentToMe = p5.Vector.sub(this.pos, parent.pos);
+    const vecParentToGrandParent = p5.Vector.sub(grandParent.pos, parent.pos);
+    let angle = p5.Vector.angleBetween(vecParentToMe, vecParentToGrandParent);
+    angle = angle < 0 ? angle + 2 * Math.PI : angle;
+    let [minAngle, maxAngle] = this.angleConstraint;
+    if (minAngle < 0) {
+      minAngle += 2 * Math.PI;
+    }
+    if (maxAngle < 0) {
+      maxAngle += 2 * Math.PI;
+    }
+    if (angle < minAngle || angle > maxAngle) {
+      const rotAngle = angle < minAngle ? -minAngle : -maxAngle;
+      vecParentToGrandParent.rotate(rotAngle);
+
+      // 위치로 환산하는 방법
+
+      // vecParentToGrandParent.add(parent.pos);
+      const newPos = p5.Vector.add(vecParentToGrandParent, parent.pos);
+      // 향하는 벡터를 180도 뒤집음
+      this.pos.set(newPos);
+      this.setHeading(vecParentToGrandParent.mult(-1).heading());
     }
   }
 
@@ -59,10 +89,6 @@ class Point {
     circle(0, 0, this.thickness);
     pop();
   }
-
-  // offset이란? 가운데 중심점이 있고, 중심점으로부터 얼마나 thickness=지름 값으로 넣어줌, 90도 위치에 있는 점을 넣어줘임.
-  // 멀티플 같은 경우, 0.5를 산출해줘, 혹은 1~1.2 정도로 해주는거임
-  // 즉, y = ax + b
 
   getPointOnThickness(angle, offset = 0, multiplier = 1) {
     const pointPos = p5.Vector.fromAngle(this.heading + angle);

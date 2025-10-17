@@ -1,5 +1,5 @@
 class Animal {
-  constructor(x, y, distConstraint, thickness = [40, 30]) {
+  constructor(x, y, distConstraint, angleConstraint, thickness = [40, 30]) {
     this.spine = [];
     this.head = null;
     this.tail = null;
@@ -13,6 +13,7 @@ class Animal {
       const options = {
         colour: colour,
         distConstraint: distConstraint,
+        angleConstraint: angleConstraint,
       };
       const newPoint = new Point(posX, posY, thickness[idx], options);
       if (idx === 0) {
@@ -40,6 +41,13 @@ class Animal {
       }
     });
     this.head.setHeading(this.spine[1].heading);
+
+    // this.spine[2].angleConstrainedBy(this.spine[1], this.spine[0]);
+    this.spine.forEach((aPoint, idx) => {
+      if (idx >= 2) {
+        aPoint.angleConstrainedBy(this.spine[idx - 1], this.spine[idx - 2]);
+      }
+    });
 
     this.spine.forEach((aPoint, idx) => {
       this.cwPoints[idx] = aPoint.getPointOnThickness(radians(90));
