@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- 여기는 건들일 부분이 없음/  width=device-width 폰 너비마큼 작동해야함-->
+    <!-- 기본 배율을 설명해줌 initial-scale=1.0 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@2.0.5/lib/p5.js"></script>
+    <script src="./sketch/main.js" defer></script>
+    <title>step1</title>
+  </head>
+  <body>
+    <h1>이게 h1 입니다.</h1>
+    <h2>이게 h2 입니다.</h2>
+    <h3>이게 h3 입니다.</h3>
+    <p>이건 문단입니다. 줄 바꿔서 저장했습니다.</p>
+    <!-- 핵심: display라는 속성이 있음
+     display에는 (block, inline은 항상 묶여있음), flex, grid로 4가지가 있음 -->
+    <!-- 모든 태그는 block이랑  inline이 있음-->
+    <!-- inline은 글자 속성누가 옆에 오는것을 허용함 -->
+
+    <a href="http://www.naver.com">네이버로 가는 링크</a>
+    <a href="http://www.google.com">구글로 가는 링크</a>
+    <!-- <p>내가 블록이면 니가 할수 있는게 뭔데? 옆에 못 오쥬?</p> -->
+
+    <!-- frame에 해당하는게 div임 -->
+    <div style="line-height: 100px">
+      <img
+        src="https://i.namu.wiki/i/vbq4_aQcNWu1cOod3l_EujHNyH3aPc3Xrbxn-YUwNGZtJJzqrtCS2vQO0KVjbJRISwFDVhUAavtkETxZF6fj5DVpHuaG-76Q93JfZPd6ox_96Ss3Qp-WyrGZ1A5De9zwaPdCYgqk7bYFJdkmx6GApw.webp"
+        alt="귀여운 이브이의 모습"
+      />
+    </div>
+    <!-- <p style="display: inline">
+      저는 원래 블록이지만 지금은 인라인이 되어 행복하게 잘 살고 있습니다.
+    </p> -->
+
+    <!-- inline 요소-> a, img, canvs, svg 태크 -->
+    <!-- div는 사이즈가 0임 -->
+
+    <!-- 이미지가 inline이라서 div를 감싸서 block을 부여하기 -->
+  </body>
+</html>
