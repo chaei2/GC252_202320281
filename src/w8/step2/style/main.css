@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  /* 사이즈가 마진은 사이즈에 관여하지 않음, 나와 다른 친구와의 gap차이임.
+  pborder, content, padding을 합쳐야함
+  body는 특별 취급됨, body가 아니라 개념적으로는 html에 색을 칠해야함 */
+  background-color: rgb(79, 220, 220);
+  margin: 0;
+}
+
+div {
+  background-color: gold;
+  padding-inline: 1.5rem;
+  max-width: 50rem;
+  margin: auto;
+}
