@@ -86,10 +86,10 @@ class Pursuer {
     rotate(angle);
 
     // 포획 범위 원 그리기
-    let evaderR = 25;
-    const captureRadius = this.r + evaderR;
-    noFill();
-    stroke('red');
+    // let evaderR = 25;
+    // const captureRadius = this.r + evaderR;
+    // noFill();
+    // stroke('red');
 
     noStroke();
     fill(this.colour);

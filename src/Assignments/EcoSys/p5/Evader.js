@@ -109,7 +109,6 @@ class Evader {
     rotate(angle);
     noStroke();
 
-    // Evader의 색상(초록, 노랑, 랜덤 팔레트)으로 채웁니다.
     fill(this.colour);
 
     beginShape();
