@@ -1,11 +1,11 @@
 // 추격자가 도망자를 잡으면 화면에서 사라지게 하기
 const evaders = [];
-const numEvaders = 8;
+const numEvaders = 4;
 const pursuers = [];
 const numPursuers = 2;
 // const seed = 0;
 
-const BREEDING_COOLDOWN_FRAMES = 120;
+const BREEDING_COOLDOWN_FRAMES = 240;
 let lastBreedingFrame = 0;
 const EVADER_PALETTE = ['#FFF2C6', '#FFC400', '#001BB7', '#8CA9FF', '#FF3F7F'];
 

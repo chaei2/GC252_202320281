@@ -63,12 +63,10 @@ class Pursuer {
   pursue(evaders, prediction = 30) {
     const closest = this.findClosestEvader(evaders);
     if (!closest) return;
-
-    // 피식자의 미래 위치 예측
-    const predictedVel = p5.Vector.mult(closest.vel, prediction);
-    let futurePos = p5.Vector.add(closest.pos, predictedVel);
-
-    // 예측된 미래 위치를 향해 추적하는 힘을 단 한 번만 적용
+    const futurePos = p5.Vector.add(
+      closest.pos,
+      p5.Vector.mult(closest.vel, prediction)
+    );
     this.seek(futurePos);
   }
 

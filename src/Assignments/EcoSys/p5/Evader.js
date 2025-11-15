@@ -1,5 +1,7 @@
 class Evader {
   static FINAL_SIZE = 25;
+  static BASE_THICKNESS = [15, 18, 18, 18, 15, 10, 5, 3];
+
   constructor(x, y, options) {
     this.pos = createVector(x, y);
     this.vel = createVector(0, 0);
@@ -8,6 +10,15 @@ class Evader {
     this.colour = options?.colour || '#450693';
     this.maxSpeed = options?.maxSpeed || 5;
     this.maxForce = options?.maxForce || 0.05;
+
+    // 몸통
+    this.animalBody = new Animal(
+      x,
+      y,
+      8,
+      [radians(160), radians(200)],
+      Evader.BASE_THICKNESS
+    );
   }
 
   findClosestPursuer(pursuers) {
@@ -47,12 +58,24 @@ class Evader {
     this.vel.limit(this.maxSpeed);
     this.pos.add(this.vel);
     this.acc.mult(0);
+    this.animalBody.setHeadPos(this.pos);
+    this.animalBody.update();
 
     // 현재 크기가 최종 크기보다 작을 때만 커지게 하기
     if (this.r < Evader.FINAL_SIZE) {
       const growthRate = 0.002;
       this.r = lerp(this.r, Evader.FINAL_SIZE, growthRate);
+
+      // 현재 성장 비율
+      const ratio = this.r / Evader.FINAL_SIZE;
+
+      this.animalBody.spine.forEach((point, idx) => {
+        // Point의 thickness에 성장 비율을 곱하여 적용
+        point.thickness = Evader.BASE_THICKNESS[idx] * ratio;
+      });
     }
+
+    this.animalBody.update();
   }
 
   applyForce(force) {
@@ -85,13 +108,12 @@ class Evader {
     const predictedVel = p5.Vector.mult(closest.vel, prediction);
     let futurePos = p5.Vector.add(closest.pos, predictedVel);
 
-    // 예측된 미래 위치로부터 도망치는 힘을 단 한 번만 적용
     this.flee(futurePos);
     // this.flee(futurePos);
-    // this.flee(closest.pos);
-    // this.flee(p5.Vector.add(closest.pos, predictedVel));
-    // this.flee(futurePos).limit(this.maxForce);
-    // return predictedVel;
+    this.flee(closest.pos);
+    this.flee(p5.Vector.add(closest.pos, predictedVel));
+    this.flee(futurePos).limit(this.maxForce);
+    return predictedVel;
     // 더 작성해야 작동합니다.
   }
 
@@ -103,39 +125,8 @@ class Evader {
   }
 
   show() {
-    const angle = this.vel.heading();
-    push();
-    translate(this.pos.x, this.pos.y);
-    rotate(angle);
-    noStroke();
-
     fill(this.colour);
-
-    beginShape();
-
-    // 머리 (가장 앞쪽 뾰족한 부분)
-    vertex(this.r * 1.5, 0);
-
-    vertex(this.r * 0.5, -this.r * 0.8);
-
-    // 몸통 중앙 (가장 넓은 부분)
-    vertex(-this.r * 0.5, -this.r * 0.5);
-
-    // 꼬리 지느러미 위쪽 끝
-    vertex(-this.r * 1.5, -this.r * 0.5);
-
-    // 꼬리 중앙 (뒤쪽)
-    vertex(-this.r * 1.0, 0);
-
-    // 꼬리 지느러미 아래쪽 끝
-    vertex(-this.r * 1.5, this.r * 0.5);
-
-    vertex(-this.r * 0.5, this.r * 0.5);
-
-    vertex(this.r * 0.5, this.r * 0.8);
-
-    endShape(CLOSE);
-
-    pop();
+    this.animalBody.showBodyShape();
+    this.animalBody.showEyes();
   }
 }
