@@ -9,8 +9,40 @@ const BREEDING_COOLDOWN_FRAMES = 240;
 let lastBreedingFrame = 0;
 const EVADER_PALETTE = ['#FFF2C6', '#FFC400', '#001BB7', '#8CA9FF', '#FF3F7F'];
 
+// 캔버스에 관하여
+const canvasContainer = document.getElementById('canvas-container');
+
+const INITIAL_WIDTH = 1000;
+const INITIAL_HEIGHT = 1000;
+
+let renderer;
+
+function resizeHandler(entries) {
+  for (let entry of entries) {
+    const { width: containerWidth, height: containerHeight } =
+      entry.contentRect;
+
+    const aspect = INITIAL_WIDTH / INITIAL_HEIGHT;
+
+    let newWidth = containerWidth;
+    let newHeight = newWidth / aspect;
+    if (newHeight > containerHeight) {
+      newHeight = containerHeight;
+      newWidth = newHeight * aspect;
+    }
+    resizeCanvas(Math.floor(newWidth), Math.floor(newHeight));
+  }
+}
+
 function setup() {
-  createCanvas(800, 600);
+  renderer = createCanvas(INITIAL_WIDTH, INITIAL_HEIGHT);
+  renderer.parent(canvasContainer);
+
+  canvasContainer.style.aspectRatio = `${INITIAL_WIDTH} / ${INITIAL_HEIGHT}`;
+
+  // 캔버스가 사이즈 재 설정되는걸 관측함
+  const resizeObserver = new ResizeObserver(resizeHandler);
+  resizeObserver.observe(canvasContainer);
 
   // randomSeed(seed);
 
