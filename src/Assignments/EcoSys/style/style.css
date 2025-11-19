@@ -5,6 +5,34 @@
   padding-inline: 1.5rem;
 }
 
+.bg {
+  background-color: rgb(45, 74, 155);
+}
+
+.js-btw {
+  justify-content: space-between;
+}
+
+.c {
+  align-items: center;
+}
+
+.gap {
+  gap: 10rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.t_b_p {
+  padding: 10px 0px;
+}
+
+.b_m {
+  margin-bottom: 10px;
+}
+
 .container {
   max-width: 50rem;
   margin-inline: auto;
@@ -12,6 +40,28 @@
 
 #canvas-container {
   margin-inline: auto;
-  /* gap: 1rems; */
-  /* background-color: red; */
+  background-color: red;
+}
+
+h1 {
+  margin: 0;
+}
+
+.h1_title {
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.btn {
+  padding: 5px 10px;
+}
+
+.outline {
+  border: solid 1px #fff;
+  background-color: rgb(45, 74, 155);
+  border-radius: 5px;
 }
