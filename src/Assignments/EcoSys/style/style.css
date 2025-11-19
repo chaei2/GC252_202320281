@@ -65,3 +65,8 @@ a {
   background-color: rgb(45, 74, 155);
   border-radius: 5px;
 }
+
+.hover:hover {
+  transition: 0.7s;
+  transform: scale(0.9);
+}
