@@ -6,7 +6,7 @@ class Pursuer {
     this.vel = createVector(0, 0);
     this.acc = createVector(0, 0);
     this.r = options?.r || 30;
-    this.colour = options?.colour || '#FF0000';
+    this.colour = options?.colour || '#fe5656ff';
     this.maxSpeed = options?.maxSpeed || 6;
     this.maxForce = options?.maxForce || 0.06;
 

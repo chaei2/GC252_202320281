@@ -1,7 +1,7 @@
 /* canvas {
   margin-inline: auto;
 } */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 .section {
   padding-inline: 1.5rem;
 }
@@ -53,6 +53,10 @@
   background-color: red;
 }
 
+.no-wrap-text {
+  white-space: nowrap;
+}
+
 h1,
 h2 {
   display: flex;
@@ -70,11 +74,11 @@ h2 {
 
 .title-2 {
   font-size: 20px;
-  color: rgb(196, 196, 196);
+  color: rgb(160, 160, 160);
 }
 
 .b {
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .title-3 {

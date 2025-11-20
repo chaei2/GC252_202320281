@@ -56,6 +56,10 @@
   background-color: red;
 }
 
+.no-wrap-text {
+  white-space: nowrap;
+}
+
 h1,
 h2 {
   display: flex;
@@ -77,7 +81,7 @@ h2 {
 }
 
 .b {
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .title-3 {
