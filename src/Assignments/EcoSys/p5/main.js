@@ -1,17 +1,18 @@
 // 추격자가 도망자를 잡으면 화면에서 사라지게 하기
 const evaders = [];
-const numEvaders = 5;
+const numEvaders = 25;
 const pursuers = [];
-const numPursuers = 2;
+const numPursuers = 3;
 
 const eatSound = document.getElementById('eat-sound');
 const birthSound = document.getElementById('birth-sound');
 
+const bubbles = [];
 // const seed = 0;
 
 const BREEDING_COOLDOWN_FRAMES = 240;
 let lastBreedingFrame = 0;
-const EVADER_PALETTE = ['#FFF2C6', '#FFC400', '#001BB7', '#8CA9FF', '#FF3F7F'];
+const EVADER_PALETTE = ['#FFF2C6', '#FFC400', '#9112BC', '#8CA9FF', '#FF3F7F'];
 
 // 캔버스에 관하여
 const canvasContainer = document.getElementById('canvas-container');
@@ -66,6 +67,15 @@ function draw() {
   textSize(50);
   text('Run away', width / 2, height / 7);
 
+  for (let i = bubbles.length - 1; i >= 0; i--) {
+    const b = bubbles[i];
+    b.update();
+    b.show();
+    if (b.isDead()) {
+      bubbles.splice(i, 1);
+    }
+  }
+
   // 도망자 정보 저장
   const newEvaders = [];
 
@@ -117,9 +127,11 @@ function draw() {
       const distance = evader.pos.dist(pursuer.pos);
       if (distance < effectiveCaptureDistance) {
         if (eatSound) {
-          eatSound.currentTime = 0; // 항상 처음부터 재생
+          // 항상 처음부터 재생
+          eatSound.currentTime = 0;
           eatSound.play();
         }
+        createBubbleBurst(evader.pos.x, evader.pos.y);
         evaders.splice(cnt, 1);
         caught = true;
         break;
