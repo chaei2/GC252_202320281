@@ -48,10 +48,13 @@
 }
 
 h1 {
+  display: flex;
   font-family: Montserrat;
   font-weight: 400;
   font-size: 25px;
   margin: 0;
+  // 컨텐츠 Wrap 현상 안 일어나게가 되는거지..아닐...지도?
+  min-width: fit-content;
 }
 
 .h1_title {
@@ -62,6 +65,7 @@ a {
   font-family: Montserrat;
   text-decoration: none;
   color: #fff;
+  min-width: fit-content;
 }
 
 .btn {

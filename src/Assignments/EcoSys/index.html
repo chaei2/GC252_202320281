@@ -6,6 +6,9 @@
     <title>EcoSys 채이</title>
     <!-- <script src="https://cdn.jsdelivr.net/npm/p5@2.0.4/lib/p5.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+
     <script src="./p5/Point.js" defer></script>
     <script src="./p5/Animal.js" defer></script>
     <script src="./p5/Pursuer.js" defer></script>
@@ -14,8 +17,6 @@
 
     <link rel="stylesheet" type="text/css" href="./style/style.css" />
     <link rel="stylesheet" href="./style/default.css" />
-
-    
   </head>
   <body>
     <div class="section bg">
@@ -28,6 +29,19 @@
           <button class="btn outline hover">
             <a href="../../../index.html">go to main page</a>
           </button>
+          <audio
+            id="sound"
+            preload="auto"
+            src="./source/water-bubbles-257594.mp3"
+          ></audio>
+          <script>
+            const soundOne = document.getElementById('sound');
+            const button = document.getElementById('btn outline hover');
+
+            button.addEventListener('mouseenter', function () {
+              soundOne.play();
+            });
+          </script>
         </div>
       </div>
     </div>
