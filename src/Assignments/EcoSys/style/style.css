@@ -14,12 +14,12 @@
   justify-content: space-between;
 }
 
-.c {
-  align-items: center;
+.gap {
+  gap: 1rem;
 }
 
-.gap {
-  gap: 10rem;
+.c {
+  align-items: center;
 }
 
 .bottons {
@@ -33,6 +33,10 @@
 
 .t_b_p {
   padding: 10px 0px;
+}
+
+.t_m {
+  margin-top: 10px;
 }
 
 .b_m {
@@ -49,18 +53,33 @@
   background-color: red;
 }
 
-h1 {
+h1,
+h2 {
   display: flex;
   font-family: Montserrat;
   font-weight: 400;
-  font-size: 25px;
   margin: 0;
   min-width: -moz-fit-content;
   min-width: fit-content;
 }
 
-.h1_title {
+.title {
+  font-size: 25px;
   color: #fff;
+}
+
+.title-2 {
+  font-size: 20px;
+  color: rgb(160, 160, 160);
+}
+
+.b {
+  font-weight: 400;
+}
+
+.title-3 {
+  font-size: 16px;
+  color: rgb(160, 160, 160);
 }
 
 a {
@@ -95,4 +114,10 @@ a {
 .hover:hover {
   transition: 0.7s;
   transform: scale(0.9);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }

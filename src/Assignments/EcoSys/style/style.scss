@@ -16,13 +16,14 @@
   justify-content: space-between;
 }
 
+.gap {
+  gap: 1rem;
+}
+
 .c {
   align-items: center;
 }
 
-.gap {
-  gap: 10rem;
-}
 .bottons {
   display: flex;
   gap: 0.4rem;
@@ -34,6 +35,10 @@
 
 .t_b_p {
   padding: 10px 0px;
+}
+
+.t_m {
+  margin-top: 10px;
 }
 
 .b_m {
@@ -51,18 +56,33 @@
   background-color: red;
 }
 
-h1 {
+h1,
+h2 {
   display: flex;
   font-family: Montserrat;
   font-weight: 400;
-  font-size: 25px;
   margin: 0;
   // 컨텐츠 Wrap 현상 안 일어나게가 되는거지..아닐...지도?
   min-width: fit-content;
 }
 
-.h1_title {
+.title {
+  font-size: 25px;
   color: #fff;
+}
+
+.title-2 {
+  font-size: 20px;
+  color: rgb(160, 160, 160);
+}
+
+.b {
+  font-weight: 400;
+}
+
+.title-3 {
+  font-size: 16px;
+  color: rgb(160, 160, 160);
 }
 
 a {
@@ -96,4 +116,10 @@ a {
 .hover:hover {
   transition: 0.7s;
   transform: scale(0.9);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
