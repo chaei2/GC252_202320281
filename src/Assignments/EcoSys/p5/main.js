@@ -3,6 +3,9 @@ const evaders = [];
 const numEvaders = 4;
 const pursuers = [];
 const numPursuers = 2;
+
+const eatSound = document.getElementById('eat-sound');
+
 // const seed = 0;
 
 const BREEDING_COOLDOWN_FRAMES = 240;
@@ -103,6 +106,10 @@ function draw() {
       const effectiveCaptureDistance = caputureDistance * 0.5;
       const distance = evader.pos.dist(pursuer.pos);
       if (distance < effectiveCaptureDistance) {
+        if (eatSound) {
+          eatSound.currentTime = 0; // 항상 처음부터 재생
+          eatSound.play();
+        }
         evaders.splice(cnt, 1);
         caught = true;
         break;

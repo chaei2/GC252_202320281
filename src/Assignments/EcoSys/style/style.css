@@ -2,8 +2,13 @@
   margin-inline: auto;
 } */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+.section-1 {
+  padding-inline: 1.5rem;
+}
+
 .section {
   padding-inline: 1.5rem;
+  margin: 3rem 0px;
 }
 
 .bg {
