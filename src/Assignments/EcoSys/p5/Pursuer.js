@@ -103,6 +103,8 @@ class Pursuer {
     fill(this.colour);
     beginShape();
     curveVertex(0, 0);
+    curveVertex(-50, 0);
+    curveVertex(-60, 10);
 
     curveVertex(
       this.r * Math.cos(radians(-160)),
@@ -115,7 +117,8 @@ class Pursuer {
       this.r * Math.sin(radians(160))
     );
 
-    curveVertex(-10, 0);
+    curveVertex(-60, -10);
+    curveVertex(-50, 0);
     curveVertex(0, 0);
 
     // vertex(0, 0);
