@@ -1,6 +1,6 @@
 // 추격자가 도망자를 잡으면 화면에서 사라지게 하기
 const evaders = [];
-const numEvaders = 25;
+const numEvaders = 20;
 const pursuers = [];
 const numPursuers = 3;
 
@@ -155,6 +155,6 @@ function draw() {
     pursuer.separate(pursuers);
     pursuer.wrapCoordinates();
     pursuer.show();
-    pursuer.showTarget();
+    // pursuer.showTarget();
   }
 }
