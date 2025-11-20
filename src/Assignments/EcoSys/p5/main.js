@@ -1,6 +1,6 @@
 // 추격자가 도망자를 잡으면 화면에서 사라지게 하기
 const evaders = [];
-const numEvaders = 4;
+const numEvaders = 5;
 const pursuers = [];
 const numPursuers = 2;
 
@@ -60,6 +60,11 @@ function setup() {
 
 function draw() {
   background('#8CE4FF');
+  textFont('Montserrat');
+  fill('white');
+  textAlign(CENTER, CENTER);
+  textSize(50);
+  text('Run away', width / 2, height / 7);
 
   // 도망자 정보 저장
   const newEvaders = [];
