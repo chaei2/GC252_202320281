@@ -1,6 +1,7 @@
 /* canvas {
   margin-inline: auto;
 } */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 .section {
   padding-inline: 1.5rem;
 }
@@ -44,6 +45,9 @@
 }
 
 h1 {
+  font-family: Montserrat;
+  font-weight: 400;
+  font-size: 25px;
   margin: 0;
 }
 
@@ -52,6 +56,7 @@ h1 {
 }
 
 a {
+  font-family: Montserrat;
   text-decoration: none;
   color: #fff;
 }
