@@ -1,12 +1,22 @@
 class Pursuer {
+  static BASE_THICKNESS = [18, 22, 22, 20, 15, 10, 5, 3];
+
   constructor(x, y, options) {
     this.pos = createVector(x, y);
     this.vel = createVector(0, 0);
     this.acc = createVector(0, 0);
-    this.r = options?.r || 25;
+    this.r = options?.r || 30;
     this.colour = options?.colour || '#FF0000';
-    this.maxSpeed = options?.maxSpeed || 5;
-    this.maxForce = options?.maxForce || 0.05;
+    this.maxSpeed = options?.maxSpeed || 6;
+    this.maxForce = options?.maxForce || 0.06;
+
+    this.animalBody = new Animal(
+      x,
+      y,
+      8, // 척추 마디 간격
+      [radians(170), radians(190)],
+      Pursuer.BASE_THICKNESS
+    );
   }
 
   findClosestEvader(evaders) {
@@ -92,9 +102,25 @@ class Pursuer {
     noStroke();
     fill(this.colour);
     beginShape();
-    vertex(0, 0);
-    vertex(this.r * Math.cos(radians(-160)), this.r * Math.sin(radians(-160)));
-    vertex(this.r * Math.cos(radians(160)), this.r * Math.sin(radians(160)));
+    curveVertex(0, 0);
+
+    curveVertex(
+      this.r * Math.cos(radians(-160)),
+      this.r * Math.sin(radians(-160))
+    );
+    // curveVertex(10, 20);
+    curveVertex(20, 0);
+    curveVertex(
+      this.r * Math.cos(radians(160)),
+      this.r * Math.sin(radians(160))
+    );
+
+    curveVertex(-10, 0);
+    curveVertex(0, 0);
+
+    // vertex(0, 0);
+    // vertex(this.r * Math.cos(radians(-160)), this.r * Math.sin(radians(-160)));
+    // vertex(this.r * Math.cos(radians(160)), this.r * Math.sin(radians(160)));
     endShape();
     pop();
   }
