@@ -5,7 +5,7 @@ class Pursuer {
     this.pos = createVector(x, y);
     this.vel = createVector(0, 0);
     this.acc = createVector(0, 0);
-    this.r = options?.r || 30;
+    this.r = options?.r || 50;
     this.colour = options?.colour || '#fe5656ff';
     this.maxSpeed = options?.maxSpeed || 6;
     this.maxForce = options?.maxForce || 0.06;
@@ -104,7 +104,7 @@ class Pursuer {
     beginShape();
     curveVertex(0, 0);
     curveVertex(-50, 0);
-    curveVertex(-60, 10);
+    curveVertex(-80, 20);
 
     curveVertex(
       this.r * Math.cos(radians(-160)),
@@ -117,7 +117,7 @@ class Pursuer {
       this.r * Math.sin(radians(160))
     );
 
-    curveVertex(-60, -10);
+    curveVertex(-80, -20);
     curveVertex(-50, 0);
     curveVertex(0, 0);
 
