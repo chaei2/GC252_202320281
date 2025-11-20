@@ -5,6 +5,7 @@ const pursuers = [];
 const numPursuers = 2;
 
 const eatSound = document.getElementById('eat-sound');
+const birthSound = document.getElementById('birth-sound');
 
 // const seed = 0;
 
@@ -91,6 +92,10 @@ function draw() {
           newEvaders.push(
             new Evader(newX, newY, { colour: randomColor, r: 5 })
           );
+          if (birthSound) {
+            birthSound.currentTime = 0; // 항상 처음부터
+            birthSound.play();
+          }
 
           // 번식 성공 시, 타이머 리셋임
           lastBreedingFrame = frameCount;
