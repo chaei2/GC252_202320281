@@ -17,11 +17,12 @@ function setup() {
     render.elt.style.width = `${containerWidth}px`;
     render.elt.style.height = `${containerWidth / INITIAL_RATIO}px`;
   }).observe(canvasContainer);
+  // resize 되는 화면 만들기
 }
 
 function draw() {
   background(0);
   fill('red');
   noStroke();
-  circle(mouseX, mouseY, 100);
+  circle(mouseX, mouseY, 50);
 }
