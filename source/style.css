@@ -18,6 +18,9 @@ em = 부모태그의 font-size에 대응하는 상대적인 크기 */
 
 /* // <weight>: Use a value from 100 to 900
 // <uniquifier>: Use a unique and descriptive class name */
+.yellow {
+  color: yellow;
+}
 
 .montserrat-regular {
   font-family: 'Montserrat', sans-serif;
