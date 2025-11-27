@@ -25,6 +25,13 @@ const cellsNum = 80;
 const cellSize = 10;
 const cells = [];
 
+function getCell(row, col) {
+  if (row < 0 || row >= cellsNum || col < 0 || col >= cellsNum) {
+    return null;
+  }
+  return cells[row * cellsNum + col];
+}
+
 function setup() {
   render = createCanvas(INITIAL_W, INITIAL_H);
   render.parent(canvasContainer);
@@ -38,6 +45,7 @@ function setup() {
   }).observe(canvasContainer);
   // resize 되는 화면 만들기
 
+  // 가로 세로 셀 만들기 + 상태는 가위바위보로 셀들 불러오기
   for (let nRow = 0; nRow < cellsNum; nRow++) {
     for (let nCol = 0; nCol < cellsNum; nCol++) {
       let x = nRow * cellSize;
@@ -45,7 +53,13 @@ function setup() {
       let w = cellSize;
       let h = cellSize;
 
-      const cell = new Cell(x, y, w, h);
+      const r = Math.random();
+      let state;
+      if (r < 1 / 3) state = 'rock';
+      else if (r < 2 / 3) state = 'paper';
+      else state = 'scissors';
+
+      const cell = new Cell(x, y, w, h, state);
       cells.push(cell);
     }
   }
