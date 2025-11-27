@@ -49,6 +49,7 @@ class Cell {
   // 나 + 랜덤 이웃 한 명
   gameRule() {
     const neighbor = this.pickRandomNeighbor();
+
     if (!neighbor) {
       this.nextState = this.state;
       return;
@@ -88,11 +89,11 @@ class Cell {
 
     noStroke();
     if (this.state === 'rock') {
-      fill('red');
+      fill('#FF6363');
     } else if (this.state === 'paper') {
-      fill('yellow');
+      fill('#FFB22C');
     } else if (this.state === 'scissors') {
-      fill('green');
+      fill('#799EFF');
     }
     rect(this.pos[0], this.pos[1], this.size[0], this.size[1]);
   }

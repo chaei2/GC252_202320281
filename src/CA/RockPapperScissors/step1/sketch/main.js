@@ -25,6 +25,8 @@ const cellsNum = 80;
 const cellSize = 10;
 const cells = [];
 
+// row랑 col이 cellsNum * cellSize칸 밖이면 null 주기
+// + 셀 아래로 내려가게 해야함
 function getCell(row, col) {
   if (row < 0 || row >= cellsNum || col < 0 || col >= cellsNum) {
     return null;
@@ -53,10 +55,11 @@ function setup() {
       let w = cellSize;
       let h = cellSize;
 
-      const r = Math.random();
+      const ramdomValue = Math.random();
+
       let state;
-      if (r < 1 / 3) state = 'rock';
-      else if (r < 2 / 3) state = 'paper';
+      if (ramdomValue < 1 / 3) state = 'rock';
+      else if (ramdomValue < 2 / 3) state = 'paper';
       else state = 'scissors';
 
       const cell = new Cell(x, y, w, h, state);
@@ -64,18 +67,20 @@ function setup() {
     }
   }
 
+  //잘된다..!
   for (let row = 0; row < cellsNum; row++) {
     for (let col = 0; col < cellsNum; col++) {
       const idx = row * cellsNum + col;
       const cell = cells[idx];
-      const tl = get(row - 1, col - 1);
-      const t = get(row - 1, col);
-      const tr = get(row - 1, col + 1);
-      const r = get(row, col + 1);
-      const br = get(row + 1, col + 1);
-      const b = get(row + 1, col);
-      const bl = get(row + 1, col - 1);
-      const l = get(row, col - 1);
+
+      const tl = getCell(row - 1, col - 1);
+      const t = getCell(row - 1, col);
+      const tr = getCell(row - 1, col + 1);
+      const r = getCell(row, col + 1);
+      const br = getCell(row + 1, col + 1);
+      const b = getCell(row + 1, col);
+      const bl = getCell(row + 1, col - 1);
+      const l = getCell(row, col - 1);
 
       cell.setNeighbors(tl, t, tr, r, br, b, bl, l);
     }
@@ -84,11 +89,7 @@ function setup() {
 
 function draw() {
   background(0);
-
-  // for (const cell of cells) {
-  //   cell.render();
-  // }
-
+  // 룰 달라질 수 있어서 나눠둠 한 턴이 끝나기 전에 애들이 다시 실행될 수 있어서 ㅇㅇ
   for (const cell of cells) {
     cell.gameRule();
   }
