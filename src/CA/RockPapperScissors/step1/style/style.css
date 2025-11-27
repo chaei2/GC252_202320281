@@ -7,13 +7,15 @@
 
 .section {
   padding-inline: 1.5rem;
-  background-color: rgb(0, 89, 213);
 }
 .section .container {
   max-width: 60rem;
   margin-inline: auto;
-  background-color: aqua;
 }
 .section .container #canvas {
   margin-inline: auto;
+}
+.section .container .h1-text {
+  margin: 0px;
+  color: cadetblue;
 }
