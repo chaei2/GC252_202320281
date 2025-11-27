@@ -41,24 +41,58 @@ class Cell {
   }
 
   // 8개 중 아무나 하나 잡기 코드??
-  getRandomNeighbor() {
+  pickRandomNeighbor() {
     const idx = Math.floor(Math.random() * 8);
     return this.neighbors[idx];
-    
   }
 
-  // if (idx === 'rock') {
-  //   this.state = 'papper';
-  // } else if (idx === 'sciccors') {
-  //   this.state = 'sciccors';
-  // }
+  // 나 + 랜덤 이웃 한 명
+  gameRule() {
+    const neighbor = this.pickRandomNeighbor();
+    if (!neighbor) {
+      this.nextState = this.state;
+      return;
+    }
+
+    const me = this.state;
+    const other = neighbor.state;
+
+    if (me === other) {
+      this.nextState = me;
+      return;
+    }
+
+    // 내가 지는지 정의함
+    const iLose =
+      (me === 'rock' && other === 'papper') ||
+      (me === 'paper' && other === 'scissors') ||
+      (me === 'scissors' && other === 'rock');
+
+    // 이웃이 나 잡아 먹음-> 내 상태는 이웃 상태
+    if (iLose) {
+      this.nextState = other;
+    } else {
+      this.nextState = me;
+    }
+  }
+
+  // 한 번 끝나면 업데이트???
+  updateState() {
+    this.state = this.nextState;
+  }
+
   render() {
     stroke(200);
+    noFill();
+    rect(this.pos[0], this.pos[1], this.size[0], this.size[1]);
 
-    if (this.state) {
-      fill(0);
-    } else {
-      noFill();
+    noStroke();
+    if (this.state === 'rock') {
+      fill('red');
+    } else if (this.state === 'papper') {
+      fill('yellow');
+    } else if (this.state === 'scissors') {
+      fill('green');
     }
     rect(this.pos[0], this.pos[1], this.size[0], this.size[1]);
   }

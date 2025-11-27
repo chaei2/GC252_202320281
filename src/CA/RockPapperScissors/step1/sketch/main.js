@@ -14,7 +14,7 @@
 // 해볼려고 노력한 과정이 중요한 것임
 
 const canvasContainer = document.getElementById('canvas-container');
-let renderer;
+let render;
 
 const INITIAL_W = 800;
 const INITIAL_H = 600;
@@ -38,14 +38,23 @@ function setup() {
   }).observe(canvasContainer);
   // resize 되는 화면 만들기
 
-  for (let n = 0; n < cellsNum; n++) {
-    const Cell = new Cell(x, y, w, h);
+  for (let nRow = 0; nRow < cellsNum; nRow++) {
+    for (let nCol = 0; nCol < cellsNum; nCol++) {
+      let x = nRow * cellSize;
+      let y = nCol * cellSize;
+      let w = cellSize;
+      let h = cellSize;
+
+      const cell = new Cell(x, y, w, h);
+      cells.push(cell);
+    }
   }
 }
 
 function draw() {
   background(0);
-  // fill('red');
-  // noStroke();
-  // circle(mouseX, mouseY, 50);
+
+  for (const cell of cells) {
+    cell.render();
+  }
 }
