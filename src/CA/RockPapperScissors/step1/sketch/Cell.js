@@ -17,11 +17,11 @@ class Cell {
   pos = [0, 0];
   size = [0, 0];
   // boolen 값을 애당초 false로 생성함
-  state = 'papper';
+  state = 'paper';
   neighbors = [null, null, null, null, null, null, null, null];
-  nextState = 'papper';
+  nextState = 'paper';
 
-  constructor(x, y, w, h, state = 'papper') {
+  constructor(x, y, w, h, state = 'paper') {
     this.pos = [x, y];
     this.size = [w, h];
     this.state = state;
@@ -64,7 +64,7 @@ class Cell {
 
     // 내가 지는지 정의함
     const iLose =
-      (me === 'rock' && other === 'papper') ||
+      (me === 'rock' && other === 'paper') ||
       (me === 'paper' && other === 'scissors') ||
       (me === 'scissors' && other === 'rock');
 
@@ -89,7 +89,7 @@ class Cell {
     noStroke();
     if (this.state === 'rock') {
       fill('red');
-    } else if (this.state === 'papper') {
+    } else if (this.state === 'paper') {
       fill('yellow');
     } else if (this.state === 'scissors') {
       fill('green');

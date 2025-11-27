@@ -21,8 +21,8 @@ const INITIAL_H = 600;
 const INITIAL_RATIO = INITIAL_W / INITIAL_H;
 // 맥 키보드 백콤 쓰는법-> 한영키 + ₩키 동시에 누름됨
 
-const cellsNum = 3;
-const cellSize = 100;
+const cellsNum = 80;
+const cellSize = 10;
 const cells = [];
 
 function setup() {
@@ -49,10 +49,39 @@ function setup() {
       cells.push(cell);
     }
   }
+
+  for (let row = 0; row < cellsNum; row++) {
+    for (let col = 0; col < cellsNum; col++) {
+      const idx = row * cellsNum + col;
+      const cell = cells[idx];
+      const tl = get(row - 1, col - 1);
+      const t = get(row - 1, col);
+      const tr = get(row - 1, col + 1);
+      const r = get(row, col + 1);
+      const br = get(row + 1, col + 1);
+      const b = get(row + 1, col);
+      const bl = get(row + 1, col - 1);
+      const l = get(row, col - 1);
+
+      cell.setNeighbors(tl, t, tr, r, br, b, bl, l);
+    }
+  }
 }
 
 function draw() {
   background(0);
+
+  // for (const cell of cells) {
+  //   cell.render();
+  // }
+
+  for (const cell of cells) {
+    cell.gameRule();
+  }
+
+  for (const cell of cells) {
+    cell.updateState();
+  }
 
   for (const cell of cells) {
     cell.render();
