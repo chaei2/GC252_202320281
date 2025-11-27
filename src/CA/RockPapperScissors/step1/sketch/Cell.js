@@ -19,11 +19,13 @@ class Cell {
   // boolen 값을 애당초 false로 생성함
   state = 'papper';
   neighbors = [null, null, null, null, null, null, null, null];
+  nextState = 'papper';
 
-  constructor(x, y, w, h, state = false) {
+  constructor(x, y, w, h, state = 'papper') {
     this.pos = [x, y];
     this.size = [w, h];
     this.state = state;
+    this.nextState = state;
   }
 
   // t, b, r, l(시계 방향으로 감아지게??)일단 8개 중 아무나 하나 잡기
@@ -39,9 +41,17 @@ class Cell {
   }
 
   // 8개 중 아무나 하나 잡기 코드??
-  randomSetNeighbor() {}
-  //
+  getRandomNeighbor() {
+    const idx = Math.floor(Math.random() * 8);
+    return this.neighbors[idx];
+    
+  }
 
+  // if (idx === 'rock') {
+  //   this.state = 'papper';
+  // } else if (idx === 'sciccors') {
+  //   this.state = 'sciccors';
+  // }
   render() {
     stroke(200);
 
