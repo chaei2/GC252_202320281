@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/p5@2.0.5/lib/p5.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/p5@2.0.4/lib/p5.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.js"></script>
+    <!-- defer가 들어가야하는 친구들의 요지는  -->
+
+    <!-- 만약 타일.js에 디퍼를 넣어줄거면 무조건 main.js보다 위에 있어야함 -->
+    <script src="./sketch/Tile.js"></script>
+    <script src="./sketch/main.js" defer></script>
+
+    <link rel="stylesheet" href="./style/style.css" />
+    <title>tile</title>
+  </head>
+  <body>
+    <div class="section">
+      <div class="container">
+        <h1>step1 실습</h1>
+        <div id="canvas-container"></div>
+        <div>
+          <h1>title</h1>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
