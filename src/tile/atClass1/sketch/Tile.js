@@ -8,11 +8,12 @@ class Tile {
   state = false;
   tileImgIdx = 0;
 
-  constructor(x, y, w, h) {
+  constructor(x, y, w, h, state = false) {
     this.pos[0] = x;
     this.pos[1] = y;
     this.size[0] = w;
     this.size[1] = h;
+    this.state = state;
   }
 
   setNeighbor(t, l, b, r) {

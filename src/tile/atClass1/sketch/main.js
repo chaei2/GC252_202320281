@@ -58,7 +58,8 @@ function setup() {
     for (let c = 0; c < tilePerRow; c++) {
       const x = c * tileSize;
       const y = r * tileSize;
-      const newTlile = new Tile(x, y, tileSize, tileSize);
+      const randomState = random() < 0.5;
+      const newTlile = new Tile(x, y, tileSize, tileSize, randomState);
       tiles.push(newTlile);
     }
   }
@@ -74,6 +75,10 @@ function setup() {
     const r = col < tilePerRow - 1 ? tiles[tileIdx(col + 1, row)] : null;
 
     aTile.setNeighbor(t, l, b, r);
+  });
+
+  tiles.forEach((aTile) => {
+    aTile.computeState();
   });
 }
 
