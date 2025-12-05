@@ -16,6 +16,23 @@ class Tile {
     this.state = state;
   }
 
+  render(tiles) {
+    const [x, y] = this.pos;
+    const [w, h] = this.size;
+    const cx = x + w / 2;
+    const cy = y + h / 2;
+
+    if (this.state) {
+      image(
+        tiles[this.tileImgIdx],
+        this.pos[0],
+        this.pos[1],
+        this.size[0],
+        this.size[1]
+      );
+    }
+  }
+
   setNeighbor(t, l, b, r) {
     this.neighbors[0] = t;
     this.neighbors[1] = l;
@@ -51,15 +68,5 @@ class Tile {
 
   toggleState() {
     this.state = !this.state;
-  }
-
-  render(tiles) {
-    image(
-      tiles[this.tileImgIdx],
-      this.pos[0],
-      this.pos[1],
-      this.size[0],
-      this.size[1]
-    );
   }
 }
