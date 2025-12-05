@@ -5,9 +5,12 @@ class Tile {
 
   // t, l, b, r반시계
   neighbors = [null, null, null, null];
+  // 현재 상태는 꺼져있음
   state = false;
+  binaryState = '0000';
   tileImgIdx = 0;
 
+  // 현재 매개변수에 대한 값을 넣어줘야함->
   constructor(x, y, w, h, state = false) {
     this.pos[0] = x;
     this.pos[1] = y;
@@ -31,6 +34,25 @@ class Tile {
         this.size[1]
       );
     }
+
+    push();
+    translate(cx, cy);
+    fill('white');
+    circle(0, 0, w / 4);
+    fill('red');
+    noStroke();
+    textAlign(CENTER, CENTER);
+    textSize(16);
+
+    // 문자랑 문자열이 있음
+    // char가 char가 캐릭터의 약자임 At은 어디에 있는
+
+    // t, l, b, r
+    text(this.binaryState.charAt(0), 0, -h / 3);
+    text(this.binaryState.charAt(1), -w / 3, 0);
+    text(this.binaryState.charAt(2), 0, h / 3);
+    text(this.binaryState.charAt(3), w / 3, 0);
+    pop();
   }
 
   setNeighbor(t, l, b, r) {
@@ -50,7 +72,8 @@ class Tile {
       // } else {
       //   binaryString += 0;
       // }
-
+      // 저장을 해놓는 것임
+      // this.binaryState = binaryString;
       binaryString += aNeighbor?.state ? '1' : '0';
     });
     // 이진수로 변환해주는 코드
