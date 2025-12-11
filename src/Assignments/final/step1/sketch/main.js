@@ -30,6 +30,13 @@ let palette = [
 
 let randomColour;
 
+// 시간 2초 동안 내 위치 보여주고, 나머지는 안 보이게 하는 코드 짜기
+// 시간을 음.. ~11)
+// If ( H ===0) H +12,
+// 값이 다른 순간을 기준으로 잡으면 그떄 나옴 —> 달라? 그러면 나옴
+
+// 일단 쿨타임을 2초 안에서 해결하도록 돌리고
+
 // 1. 화면을 불러야 함
 const canvasContainer = document.getElementById('canvas-container');
 // 변수 지정 = 문서.아이디요소 가져오기('id에 지정한 이름 호출')
@@ -68,6 +75,7 @@ function setup() {
   // 이 캔버스의 부모는 canvasContainer야라고 설정해줌
 
   render.elt.style.aspectRatio = `${INITIAL_W} / ${INITIAL_H}`;
+
   // render.elt = HTML 태그의 (canvas 속성 가져옴)
   // .style = 그중 스타일을 속성에서 .aspectRatio = 비율을 건들게
   // =>즉, 이 박스 크기를 계산하는데, 태그 속성에서 <canvs>의 스타일 중 비율을 반영해줘 = (내가 적은 값으로)
@@ -125,18 +133,17 @@ function draw() {
 
   // ??? 왜지 아까랑 똑같은데..? 아 아래 안 고쳐서 그렇구나
 
-  posX = posX + firstX * move;
-  posY = posY + firstY * move;
-
-  // circle(posX, posY, size);
-  // // 벽에 부딪히면 옆에서 나오는 코드
-  // //  x가 0일때 너비 끝에서 얘가 나옴
-  // if (posX < 0) {
-  //   posX = size * 0.5 + INITIAL_W;
-  // } else if (posX > INITIAL_W) {
-  //   posX = size * 0.5 - 0;
-  // }
-
+  let timeLook = frameCount % 180;
+  // 뭔가 잘못된거 같지만? 아닌가?
+  if (timeLook < 120) {
+    posX = posX + firstX * move;
+    posY = posY + firstY * move;
+    // timeLook + 12;
+    // ㅇㄴ x가 가다가 멈춰야하는데, 그러면 음 값을 저장하는 곳을 만들어야 하는데? 그런다고 멈추나..?
+    console.log(timeLook);
+  } else {
+    fill('red');
+  }
   circle(posX, posY, size);
   // 벽에 부딪히면 옆에서 나오는 코드
   //  x가 0일때 너비 끝에서 얘가 나옴
