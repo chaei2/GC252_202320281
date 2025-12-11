@@ -1,7 +1,7 @@
 // 먼저 화면부터 resize 되게 해보기 기초부터 시작
 // 시간을 활용한 무언가 만들기
 
-// 게임 룰 바꾸기 얘 밥을 많이 맥여서 키우는 게임 멈춰있을떄 애 사이즈가 줄어들음 
+// 게임 룰 바꾸기 얘 밥을 많이 맥여서 키우는 게임 멈춰있을떄 애 사이즈가 줄어들음
 // 완전히 소멸 될때 게임 끝
 
 // 내가 지금 당장 필요한 값은 무엇인가?
@@ -16,6 +16,7 @@ let size = 50;
 let posX;
 let posY;
 let move = 4;
+let sizeDown = 0.03;
 
 let palette = [
   '#6AECE1',
@@ -145,18 +146,30 @@ function draw() {
     textSize(60);
     text('Go', INITIAL_W / 2, INITIAL_H / 2);
     console.log(timeLook);
-  } else {
+  } else if (size > 0) {
+    size = size - 0.1;
     noStroke();
     fill('red');
     textAlign(CENTER);
     textSize(60);
     text('Stop', INITIAL_W / 2, INITIAL_H / 2);
+  } else if (size === 0) {
+    textSize(60);
+    noStroke();
+    fill('red');
+    text('Try again', INITIAL_W / 2, INITIAL_H / 2);
   }
+  // if (size > 0) {
+  //   size = size - 0.1;
+  // } else if ((size = 0)) {
+  //   text('Try again', INITIAL_W / 2, INITIAL_H / 2);
+  // }
   push();
   translate(posX, posY);
-  rotate();
+  // rotate();
+  scale(size / 50);
   fill(randomColour);
-  beginShape(OPEN);
+  beginShape();
   vertex(0, 0);
   curveVertex(20, 30);
   curveVertex(12, 50);
