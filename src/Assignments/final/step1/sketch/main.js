@@ -13,9 +13,10 @@
 
 const mainChar = 1;
 // 얘는 원으로 그릴거임
-let size = 20;
+let size = 30;
 let posX;
 let posY;
+let move = 30;
 
 let palette = [
   '#6AECE1',
@@ -88,26 +89,30 @@ function setup() {
 
   randomColour = random(palette);
   fill(randomColour);
+  posX = INITIAL_W / 2;
+  posY = INITIAL_H / 2;
 }
 
 function draw() {
   background(0);
   // rect는 총 4개가 있어야 했지?ㅋㅋ..
 
-  posX = INITIAL_W / 2;
-  posY = INITIAL_H / 2;
-
   circle(posX, posY, size);
 }
 
+// ㅇㄴ 한영키 때문이였어;;
+
+// keyPressed는 키가 눌렸을때?
+// keyIsDown은 키가 눌렸는가?를 보는거라 keyPressed보다 더 부드럽게 움직임
 function keyPressed() {
-  if (key === 'a') {
-    posX = posX - 3;
-  } else if (key === 'd') {
-    posX = posX + 3;
-  } else if (key === 'w') {
-    posY = posY - 3;
-  } else if (key === 's') {
-    posY = posY + 3;
+  if (key === 'a' || key === 'ㅁ') {
+    posX = posX - move;
+  } else if (key === 'd' || key === 'ㅇ') {
+    posX = posX + move;
+  } else if (key === 'w' || key === 'ㅈ') {
+    posY = posY - move;
+  } else if (key === 's' || key === 'ㄴ') {
+    posY = posY + move;
   }
+  // console.log(key);
 }
