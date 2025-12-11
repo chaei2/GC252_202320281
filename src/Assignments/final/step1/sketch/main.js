@@ -16,7 +16,7 @@ const mainChar = 1;
 let size = 30;
 let posX;
 let posY;
-let move = 15;
+let move = 3;
 
 let palette = [
   '#6AECE1',
@@ -24,8 +24,8 @@ let palette = [
   '#BB8ED0',
   '#FD7979',
   '#FFEE91',
-  '#DC0000',
-  '#0046FF',
+  '#e68585ff',
+  '#7997eaff',
 ];
 
 let randomColour;
@@ -129,7 +129,46 @@ function draw() {
   posX = posX + firstX * move;
   posY = posY + firstY * move;
 
+  // circle(posX, posY, size);
+  // // 벽에 부딪히면 옆에서 나오는 코드
+  // //  x가 0일때 너비 끝에서 얘가 나옴
+  // if (posX < 0) {
+  //   posX = size * 0.5 + INITIAL_W;
+  // } else if (posX > INITIAL_W) {
+  //   posX = size * 0.5 - 0;
+  // }
+
   circle(posX, posY, size);
+  // 벽에 부딪히면 옆에서 나오는 코드
+  //  x가 0일때 너비 끝에서 얘가 나옴
+
+  // if (posX < 0) {
+  //   posX = size * 0.5 + INITIAL_W;
+  //   console.log(posX);
+  // } else if (posX > INITIAL_W) {
+  //   posX = size * 0.5 - 0;
+  //   console.log(posX);
+  // } else if (posY > INITIAL_H) {
+  //   posY = 0 - size * 0.5;
+  //   console.log(posY);
+  // } else if (posY < 0) {
+  //   posY = size * 0.5 + INITIAL_H;
+  //   console.log(posY);
+  // }
+
+  if (posX < 0) {
+    posX = INITIAL_W;
+    console.log(posX);
+  } else if (posX > INITIAL_W) {
+    posX = 0;
+    console.log(posX);
+  } else if (posY > INITIAL_H) {
+    posY = 0;
+    console.log(posY);
+  } else if (posY < 0) {
+    posY = INITIAL_H;
+    console.log(posY);
+  }
 }
 
 // ㅇㄴ 한영키 때문이였어;;
