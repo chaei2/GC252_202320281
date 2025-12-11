@@ -30,6 +30,8 @@ let palette = [
 
 let randomColour;
 
+// 게이지 바 만들기, 먹으면 오르고, 아니면 줄어듦 둘이 연동되게 해야함
+
 // 시간 2초 동안 내 위치 보여주고, 나머지는 안 보이게 하는 코드 짜기
 // 시간을 음.. ~11)
 // If ( H ===0) H +12,
@@ -48,6 +50,12 @@ let firstY = 0;
 
 const INITIAL_W = 800;
 const INITIAL_H = 600;
+let bar;
+let barX = INITIAL_W / 2;
+let barY = INITIAL_H / 45;
+let barPosX;
+let barPosY;
+let barRound = 30;
 
 // INITIAL = 초기의 / 대문자로 명명하는 이유: 바꿀 일 없는 애는 그냥 쐐기 박음(그래야 가독성 좋으니깐..? 아마도)
 // 전역 함수= 프로그램 전체에서 사용 가능한 변수
@@ -109,6 +117,11 @@ function setup() {
 
 function draw() {
   background('black');
+  rectMode(CENTER);
+  fill('gray');
+  barPosX = INITIAL_W / 2;
+  barPosY = INITIAL_H / 10;
+  bar = rect(barPosX, barPosY, barX, barY, barRound);
 
   // 아 키 코드 넣어야 작동함
   // keyisdown은 참 거짓이 아니라 키 코드를 넣어야 하는데, 그게 이진법에서 변환한 코드에서 일시적으로 a를 눌렀을때 보이는 거 확인해야함
@@ -140,11 +153,13 @@ function draw() {
     posX = posX + firstX * move;
     posY = posY + firstY * move;
     // ㅇㄴ x가 가다가 멈춰야하는데, 그러면 음 값을 저장하는 곳을 만들어야 하는데? 그런다고 멈추나..? 아 값을 그냥 if else로 돌리고 안 넣으면 그만...이였던것..
+
+    // 이게 문제인거 같은데, 일단 나중에 고치고, 바부터 만들어야..
     fill('lightgreen');
     noStroke();
     textAlign(CENTER);
     textSize(60);
-    text('Go', INITIAL_W / 2, INITIAL_H / 2);
+    text('Eating', INITIAL_W / 2, INITIAL_H / 2);
     console.log(timeLook);
   } else if (size > 0) {
     size = size - 0.1;
@@ -152,7 +167,7 @@ function draw() {
     fill('red');
     textAlign(CENTER);
     textSize(60);
-    text('Stop', INITIAL_W / 2, INITIAL_H / 2);
+    text('Hungry', INITIAL_W / 2, INITIAL_H / 2);
   } else if (size === 0) {
     textSize(60);
     noStroke();
