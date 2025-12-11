@@ -78,6 +78,7 @@ const INITIAL_RATIO = INITIAL_W / INITIAL_H;
 
 function setup() {
   render = createCanvas(INITIAL_W, INITIAL_H);
+  
   // 값을 넣어주고
   render.parent(canvasContainer);
   // 이 캔버스의 부모는 canvasContainer야라고 설정해줌
