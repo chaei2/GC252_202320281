@@ -51,8 +51,8 @@ let firstY = 0;
 const INITIAL_W = 800;
 const INITIAL_H = 600;
 let bar;
-let barX = INITIAL_W / 2;
-let barY = INITIAL_H / 45;
+let barX;
+let barY;
 let barPosX;
 let barPosY;
 let barRound = 30;
@@ -113,15 +113,12 @@ function setup() {
 
   firstX = 0;
   firstY = 0;
+
+  barX = INITIAL_W / 2;
 }
 
 function draw() {
   background('black');
-  rectMode(CENTER);
-  fill('gray');
-  barPosX = INITIAL_W / 2;
-  barPosY = INITIAL_H / 10;
-  bar = rect(barPosX, barPosY, barX, barY, barRound);
 
   // 아 키 코드 넣어야 작동함
   // keyisdown은 참 거짓이 아니라 키 코드를 넣어야 하는데, 그게 이진법에서 변환한 코드에서 일시적으로 a를 눌렀을때 보이는 거 확인해야함
@@ -149,6 +146,7 @@ function draw() {
   // 주기는 3초 중 2초눈 보임 나머지 1초는 멈춤
   let timeLook = frameCount % 180;
   // 뭔가 잘못된거 같지만? 아닌가?
+
   if (timeLook < 120) {
     posX = posX + firstX * move;
     posY = posY + firstY * move;
@@ -156,6 +154,7 @@ function draw() {
 
     // 이게 문제인거 같은데, 일단 나중에 고치고, 바부터 만들어야..
     fill('lightgreen');
+    // barX;
     noStroke();
     textAlign(CENTER);
     textSize(60);
@@ -163,6 +162,8 @@ function draw() {
     console.log(timeLook);
   } else if (size > 0) {
     size = size - 0.1;
+    barX = barX - barX / size / 5;
+
     noStroke();
     fill('red');
     textAlign(CENTER);
@@ -179,9 +180,16 @@ function draw() {
   // } else if ((size = 0)) {
   //   text('Try again', INITIAL_W / 2, INITIAL_H / 2);
   // }
+
+  barPosX = INITIAL_W / 4;
+  barPosY = INITIAL_H / 10;
+  barY = INITIAL_H / 45;
+  // rectMode(CENTER);
+  fill('gray');
+  bar = rect(barPosX, barPosY, barX, barY, barRound);
+
   push();
   translate(posX, posY);
-
   // 애 왜 ㅋㅋㅋㅋ 50 설정인거지? 이상하네
   scale(size / 50);
   fill(randomColour);
