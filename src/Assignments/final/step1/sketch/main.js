@@ -101,7 +101,6 @@ function setup() {
 
 function draw() {
   background(0);
-  // rect는 총 4개가 있어야 했지?ㅋㅋ..
 
   // 아 키 코드 넣어야 작동함
   // keyisdown은 참 거짓이 아니라 키 코드를 넣어야 하는데, 그게 이진법에서 변환한 코드에서 일시적으로 a를 눌렀을때 보이는 거 확인해야함
@@ -141,20 +140,6 @@ function draw() {
   circle(posX, posY, size);
   // 벽에 부딪히면 옆에서 나오는 코드
   //  x가 0일때 너비 끝에서 얘가 나옴
-
-  // if (posX < 0) {
-  //   posX = size * 0.5 + INITIAL_W;
-  //   console.log(posX);
-  // } else if (posX > INITIAL_W) {
-  //   posX = size * 0.5 - 0;
-  //   console.log(posX);
-  // } else if (posY > INITIAL_H) {
-  //   posY = 0 - size * 0.5;
-  //   console.log(posY);
-  // } else if (posY < 0) {
-  //   posY = size * 0.5 + INITIAL_H;
-  //   console.log(posY);
-  // }
 
   if (posX < 0) {
     posX = INITIAL_W;
