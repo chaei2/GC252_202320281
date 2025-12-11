@@ -156,11 +156,13 @@ function draw() {
     fill('lightgreen');
     // barX;
     noStroke();
+    textFont('Boldonse');
     textAlign(CENTER);
     textSize(60);
     text('Eating', INITIAL_W / 2, INITIAL_H / 2);
     console.log(timeLook);
   } else if (size > 0) {
+    background('#ddaaaaff');
     size = size - 0.1;
     barX = barX - barX / size / 5;
 
@@ -185,7 +187,7 @@ function draw() {
   barPosY = INITIAL_H / 10;
   barY = INITIAL_H / 45;
   // rectMode(CENTER);
-  fill('gray');
+  fill('rgb(0, 255, 13)');
   bar = rect(barPosX, barPosY, barX, barY, barRound);
 
   push();
