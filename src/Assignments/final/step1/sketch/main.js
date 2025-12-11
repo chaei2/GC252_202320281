@@ -13,10 +13,10 @@
 
 const mainChar = 1;
 // 얘는 원으로 그릴거임
-let size = 30;
+let size = 50;
 let posX;
 let posY;
-let move = 3;
+let move = 4;
 
 let palette = [
   '#6AECE1',
@@ -108,7 +108,7 @@ function setup() {
 }
 
 function draw() {
-  background(0);
+  background('black');
 
   // 아 키 코드 넣어야 작동함
   // keyisdown은 참 거짓이 아니라 키 코드를 넣어야 하는데, 그게 이진법에서 변환한 코드에서 일시적으로 a를 눌렀을때 보이는 거 확인해야함
@@ -139,12 +139,19 @@ function draw() {
   if (timeLook < 120) {
     posX = posX + firstX * move;
     posY = posY + firstY * move;
-    // timeLook + 12;
-    // ㅇㄴ x가 가다가 멈춰야하는데, 그러면 음 값을 저장하는 곳을 만들어야 하는데? 그런다고 멈추나..?
+    // ㅇㄴ x가 가다가 멈춰야하는데, 그러면 음 값을 저장하는 곳을 만들어야 하는데? 그런다고 멈추나..? 아 값을 그냥 if else로 돌리고 안 넣으면 그만...이였던것..
     console.log(timeLook);
     fill(randomColour);
+    noStroke();
+    textAlign(CENTER);
+    textSize(60);
+    text('Go', INITIAL_W / 2, INITIAL_H / 2);
   } else {
+    noStroke();
     fill('red');
+    textAlign(CENTER);
+    textSize(60);
+    text('Stop', INITIAL_W / 2, INITIAL_H / 2);
   }
   circle(posX, posY, size);
   // 벽에 부딪히면 옆에서 나오는 코드
