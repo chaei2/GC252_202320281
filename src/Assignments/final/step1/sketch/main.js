@@ -16,7 +16,7 @@ const mainChar = 1;
 let size = 30;
 let posX;
 let posY;
-let move = 30;
+let move = 5;
 
 let palette = [
   '#6AECE1',
@@ -97,6 +97,25 @@ function draw() {
   background(0);
   // rect는 총 4개가 있어야 했지?ㅋㅋ..
 
+  // 아 키 코드 넣어야 작동함
+  // keyisdown은 참 거짓이 아니라 키 코드를 넣어야 하는데, 그게 이진법에서 변환한 코드에서 일시적으로 a를 눌렀을때 보이는 거 확인해야함
+  // a = 65, d = 68, w = 87, s = 83
+  
+  // ??? 왜 작동 안함 개에반데
+  if (keyIsDown(65)) {
+    posX = posX - move;
+    console.log('왼쪽가는중 a');
+  }
+  if (keyIsDown(68)) {
+    posX = posX + move;
+  }
+  if (keyIsDown(87)) {
+    posY = posY - move;
+  }
+  if (keyIsDown(83)) {
+    posY = posY + move;
+  }
+
   circle(posX, posY, size);
 }
 
@@ -104,15 +123,15 @@ function draw() {
 
 // keyPressed는 키가 눌렸을때?
 // keyIsDown은 키가 눌렸는가?를 보는거라 keyPressed보다 더 부드럽게 움직임
-function keyPressed() {
-  if (key === 'a' || key === 'ㅁ') {
-    posX = posX - move;
-  } else if (key === 'd' || key === 'ㅇ') {
-    posX = posX + move;
-  } else if (key === 'w' || key === 'ㅈ') {
-    posY = posY - move;
-  } else if (key === 's' || key === 'ㄴ') {
-    posY = posY + move;
-  }
-  // console.log(key);
-}
+// function keyPressed() {
+//   // if (key === 'a' || key === 'ㅁ') {
+//   //   posX = posX - move;
+//   // } else if (key === 'd' || key === 'ㅇ') {
+//   //   posX = posX + move;
+//   // } else if (key === 'w' || key === 'ㅈ') {
+//   //   posY = posY - move;
+//   // } else if (key === 's' || key === 'ㄴ') {
+//   //   posY = posY + move;
+//   // }
+//   console.log('키 이름:', key, '키 번호', keyCode);
+// }
