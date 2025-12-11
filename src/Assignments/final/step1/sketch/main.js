@@ -133,6 +133,7 @@ function draw() {
 
   // ??? 왜지 아까랑 똑같은데..? 아 아래 안 고쳐서 그렇구나
 
+  // 주기는 3초 중 2초눈 보임 나머지 1초는 멈춤
   let timeLook = frameCount % 180;
   // 뭔가 잘못된거 같지만? 아닌가?
   if (timeLook < 120) {
@@ -141,6 +142,7 @@ function draw() {
     // timeLook + 12;
     // ㅇㄴ x가 가다가 멈춰야하는데, 그러면 음 값을 저장하는 곳을 만들어야 하는데? 그런다고 멈추나..?
     console.log(timeLook);
+    fill(randomColour);
   } else {
     fill('red');
   }
