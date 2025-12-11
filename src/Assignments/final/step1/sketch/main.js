@@ -1,9 +1,8 @@
 // 먼저 화면부터 resize 되게 해보기 기초부터 시작
 // 시간을 활용한 무언가 만들기
-// 가만히 있으면 죽는 게임, 뒤에서는 어떤 무리가 쫓아오고 닿으면 사망.
-// 특정 시간에만 내 현 위치를 알 수 있음
-// 내 모습이 보이지 않을때, 움직일 수 있고, 보일때는 쫓아오는 무리도 같이 스탑
-// 즉, 위치를 확인할 수 있을때만 시간이 정지함
+
+// 게임 룰 바꾸기 얘 밥을 많이 맥여서 키우는 게임 멈춰있을떄 애 사이즈가 줄어들음 
+// 완전히 소멸 될때 게임 끝
 
 // 내가 지금 당장 필요한 값은 무엇인가?
 // 일단 주인공 만들기
@@ -12,7 +11,7 @@
 // 색상은 랜덤으로 팔레트에 있는 색 아무거나 지정하게 함
 
 const mainChar = 1;
-// 얘는 원으로 그릴거임
+// 얘는 원으로 그릴거임 아니면 커브 버텍스로..?
 let size = 50;
 let posX;
 let posY;
@@ -20,7 +19,7 @@ let move = 4;
 
 let palette = [
   '#6AECE1',
-  '#360185',
+  '#4ccd91ff',
   '#BB8ED0',
   '#FD7979',
   '#FFEE91',
@@ -140,12 +139,12 @@ function draw() {
     posX = posX + firstX * move;
     posY = posY + firstY * move;
     // ㅇㄴ x가 가다가 멈춰야하는데, 그러면 음 값을 저장하는 곳을 만들어야 하는데? 그런다고 멈추나..? 아 값을 그냥 if else로 돌리고 안 넣으면 그만...이였던것..
-    console.log(timeLook);
-    fill(randomColour);
+    fill('lightgreen');
     noStroke();
     textAlign(CENTER);
     textSize(60);
     text('Go', INITIAL_W / 2, INITIAL_H / 2);
+    console.log(timeLook);
   } else {
     noStroke();
     fill('red');
@@ -153,7 +152,23 @@ function draw() {
     textSize(60);
     text('Stop', INITIAL_W / 2, INITIAL_H / 2);
   }
-  circle(posX, posY, size);
+  push();
+  translate(posX, posY);
+  rotate();
+  fill(randomColour);
+  beginShape(OPEN);
+  vertex(0, 0);
+  curveVertex(20, 30);
+  curveVertex(12, 50);
+  curveVertex(-12, 50);
+  curveVertex(-20, 30);
+  curveVertex(0, 0);
+  vertex(20, 30);
+  endShape(CLOSE);
+  // 기존 코드 혹시 모르니깐
+  // circle(posX, posY, size);
+  pop();
+
   // 벽에 부딪히면 옆에서 나오는 코드
   //  x가 0일때 너비 끝에서 얘가 나옴
 
