@@ -36,12 +36,24 @@ function setup() {
   render.parent(canvasContainer);
   // 이 캔버스의 부모는 canvasContainer야라고 설정해줌
 
-  render.elt.sytle.aspectRatio = `${INITIAL_W / INITIAL_H}`;
+  render.elt.sytle.aspectRatio = `${INITIAL_W} / ${INITIAL_H}`;
   // render.elt = HTML 태그의 (canvas 속성 가져옴)
   // .style = 그중 스타일을 속성에서 .aspectRatio = 비율을 건들게
   // =>즉, 이 박스 크기를 계산하는데, 태그 속성에서 <canvs>의 스타일 중 비율을 반영해줘 = (내가 적은 값으로)
 
   // ${...} = 백틱 문자열=> 변수를 문자열 안에 쏙 집어 넣는 문법임
   // 코드 실행시 이렇게 변환해줌 "600 / 800"
-  
+
+  new ResizeObserver(() => {
+    // 왜 또 다시 계산해서 넣을까?
+    // aspect-ratio는 '모양'을 유지해주는 가이드라인, ResizeObserver는 캔버스 부모 통에 꽉 차게 픽셀 단위로 '크기'를 박아주는 실행범이라서
+    
+    const { width: containerWidth, height: containerHeight } =
+      canvasContainer.getBoundingClientRect();
+    render.elt.style.width = `${containerWidth}`;
+
+    // 새로 비율 계산
+    render.elt.style.height = `${containerWidth / INITIAL_RATIO}px`;
+  }).observe(canvasContainer);
+  // containerHeight 안 쓰임
 }
