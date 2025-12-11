@@ -78,7 +78,7 @@ const INITIAL_RATIO = INITIAL_W / INITIAL_H;
 
 function setup() {
   render = createCanvas(INITIAL_W, INITIAL_H);
-  
+
   // 값을 넣어주고
   render.parent(canvasContainer);
   // 이 캔버스의 부모는 canvasContainer야라고 설정해줌
@@ -170,7 +170,8 @@ function draw() {
     noStroke();
     fill('red');
     textAlign(CENTER);
-    textSize(60);
+
+    textSize(random(50, 80));
     text('Hungry', INITIAL_W / 2, INITIAL_H / 2);
   } else if (size === 0) {
     textSize(60);
