@@ -36,7 +36,7 @@ function setup() {
   render.parent(canvasContainer);
   // 이 캔버스의 부모는 canvasContainer야라고 설정해줌
 
-  render.elt.sytle.aspectRatio = `${INITIAL_W} / ${INITIAL_H}`;
+  render.elt.style.aspectRatio = `${INITIAL_W} / ${INITIAL_H}`;
   // render.elt = HTML 태그의 (canvas 속성 가져옴)
   // .style = 그중 스타일을 속성에서 .aspectRatio = 비율을 건들게
   // =>즉, 이 박스 크기를 계산하는데, 태그 속성에서 <canvs>의 스타일 중 비율을 반영해줘 = (내가 적은 값으로)
@@ -47,13 +47,22 @@ function setup() {
   new ResizeObserver(() => {
     // 왜 또 다시 계산해서 넣을까?
     // aspect-ratio는 '모양'을 유지해주는 가이드라인, ResizeObserver는 캔버스 부모 통에 꽉 차게 픽셀 단위로 '크기'를 박아주는 실행범이라서
-    
+
     const { width: containerWidth, height: containerHeight } =
       canvasContainer.getBoundingClientRect();
-    render.elt.style.width = `${containerWidth}`;
+      // getBoundingClientRect=> 가져와 경계 클라이언트(보이는 화면 창) 사각형 즉, 눈애 보이는 사각형 경계 창을 가져와
+      // 얘가 하는 일? 요소 재고, 객체 줌 예: x, y, w, h, t, l, b,r등등?
+    render.elt.style.width = `${containerWidth}px`;
 
     // 새로 비율 계산
     render.elt.style.height = `${containerWidth / INITIAL_RATIO}px`;
   }).observe(canvasContainer);
   // containerHeight 안 쓰임
+}
+
+function draw() {
+  background(0);
+  fill('red');
+  noStroke();
+  circle(mouseX, mouseY, 50);
 }
