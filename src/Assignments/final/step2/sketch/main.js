@@ -1,9 +1,9 @@
 // 먼저 화면부터 resize 되게 해보기 기초부터 시작
-// 시간을 활용한 무언가 만들기
-// 가만히 있으면 죽는 게임, 뒤에서는 어떤 무리가 쫓아오고 닿으면 사망.
-// 특정 시간에만 내 현 위치를 알 수 있음
-// 내 모습이 보이지 않을때, 움직일 수 있고, 보일때는 쫓아오는 무리도 같이 스탑
-// 즉, 위치를 확인할 수 있을때만 시간이 정지함
+// 챗 쓰지 않고, 여태 한거 뜯어 공부하면서 만들어보기
+// 솔직히 공부 개판으로 한거 같긴함 이해가 아직 안되는게 ㅋㅋㅋ ㅜㅜㅜㅇㅂㅇ)...
+
+
+
 
 // 1. 화면을 불러야 함
 const canvasContainer = document.getElementById('canvas-container');
@@ -66,7 +66,6 @@ function setup() {
 function draw() {
   background(0);
   fill('red');
-
-
-
+  noStroke();
+  circle(mouseX, mouseY, 50);
 }
