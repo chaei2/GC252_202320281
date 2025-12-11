@@ -5,14 +5,38 @@
 // 내 모습이 보이지 않을때, 움직일 수 있고, 보일때는 쫓아오는 무리도 같이 스탑
 // 즉, 위치를 확인할 수 있을때만 시간이 정지함
 
+// 내가 지금 당장 필요한 값은 무엇인가?
+// 일단 주인공 만들기
+// 1명, 생김새, 크기, 위치, 색상
+// 키는 w,a,s,d
+// 색상은 랜덤으로 팔레트에 있는 색 아무거나 지정하게 함
+
+const mainChar = 1;
+// 얘는 원으로 그릴거임
+let size = 20;
+let posX;
+let posY;
+
+let palette = [
+  '#6AECE1',
+  '#360185',
+  '#BB8ED0',
+  '#FD7979',
+  '#FFEE91',
+  '#DC0000',
+  '#0046FF',
+];
+
+let randomColour;
+
 // 1. 화면을 불러야 함
 const canvasContainer = document.getElementById('canvas-container');
 // 변수 지정 = 문서.아이디요소 가져오기('id에 지정한 이름 호출')
 let render;
 // render가 되어야 하니깐 함수 미리 호출하면 좋음. 값은 아직 안 넣음
 
-const INITIAL_W = 600;
-const INITIAL_H = 800;
+const INITIAL_W = 800;
+const INITIAL_H = 600;
 
 // INITIAL = 초기의 / 대문자로 명명하는 이유: 바꿀 일 없는 애는 그냥 쐐기 박음(그래야 가독성 좋으니깐..? 아마도)
 // 전역 함수= 프로그램 전체에서 사용 가능한 변수
@@ -61,12 +85,29 @@ function setup() {
     render.elt.style.height = `${containerWidth / INITIAL_RATIO}px`;
   }).observe(canvasContainer);
   // containerHeight 안 쓰임
+
+  randomColour = random(palette);
+  fill(randomColour);
 }
 
 function draw() {
   background(0);
-  fill('red');
+  // rect는 총 4개가 있어야 했지?ㅋㅋ..
 
+  posX = INITIAL_W / 2;
+  posY = INITIAL_H / 2;
 
+  circle(posX, posY, size);
+}
 
+function keyPressed() {
+  if (key === 'a') {
+    posX = posX - 3;
+  } else if (key === 'd') {
+    posX = posX + 3;
+  } else if (key === 'w') {
+    posY = posY - 3;
+  } else if (key === 's') {
+    posY = posY + 3;
+  }
 }
