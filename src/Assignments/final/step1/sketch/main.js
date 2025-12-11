@@ -179,19 +179,14 @@ function draw() {
     fill('red');
     text('Try again', INITIAL_W / 2, INITIAL_H / 2);
   }
-  // if (size > 0) {
-  //   size = size - 0.1;
-  // } else if ((size = 0)) {
-  //   text('Try again', INITIAL_W / 2, INITIAL_H / 2);
-  // }
 
   barPosX = INITIAL_W / 4;
   barPosY = INITIAL_H / 10;
   barY = INITIAL_H / 45;
   // rectMode(CENTER);
+
   fill('rgb(0, 255, 13)');
   bar = rect(barPosX, barPosY, barX, barY, barRound);
-
   push();
   translate(posX, posY);
   // 애 왜 ㅋㅋㅋㅋ 50 설정인거지? 이상하네
