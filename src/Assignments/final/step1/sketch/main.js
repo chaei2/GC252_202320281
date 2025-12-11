@@ -16,7 +16,7 @@ const mainChar = 1;
 let size = 30;
 let posX;
 let posY;
-let move = 5;
+let move = 15;
 
 let palette = [
   '#6AECE1',
@@ -34,6 +34,9 @@ let randomColour;
 const canvasContainer = document.getElementById('canvas-container');
 // 변수 지정 = 문서.아이디요소 가져오기('id에 지정한 이름 호출')
 let render;
+
+let firstX = 0;
+let firstY = 0;
 // render가 되어야 하니깐 함수 미리 호출하면 좋음. 값은 아직 안 넣음
 
 const INITIAL_W = 800;
@@ -91,6 +94,9 @@ function setup() {
   fill(randomColour);
   posX = INITIAL_W / 2;
   posY = INITIAL_H / 2;
+
+  firstX = 0;
+  firstY = 0;
 }
 
 function draw() {
@@ -100,7 +106,8 @@ function draw() {
   // 아 키 코드 넣어야 작동함
   // keyisdown은 참 거짓이 아니라 키 코드를 넣어야 하는데, 그게 이진법에서 변환한 코드에서 일시적으로 a를 눌렀을때 보이는 거 확인해야함
   // a = 65, d = 68, w = 87, s = 83
-  console.log('작동하는거 맞지?');
+
+  // console.log('작동하는거 맞지?');
 
   // ??? 왜 작동 안함 개에반데 하 버려
   // if (keyIsDown(65)) {
@@ -117,22 +124,33 @@ function draw() {
   //   posY = posY + move;
   // }
 
+  // ??? 왜지 아까랑 똑같은데..? 아 아래 안 고쳐서 그렇구나
+
+  posX = posX + firstX * move;
+  posY = posY + firstY * move;
+
   circle(posX, posY, size);
 }
 
 // ㅇㄴ 한영키 때문이였어;;
 
 // keyPressed는 키가 눌렸을때?
-// keyIsDown은 키가 눌렸는가?를 보는거라 keyPressed보다 더 부드럽게 움직임
+// keyIsDown은 키가 눌렸는가?를 보는거라 keyPressed보다 더 부드럽게 움직임 근데 작동 안해서 그냥 버림 ㅇㅇ; 뭐 그거나 그거나 ㅋ..
+
 function keyPressed() {
+  // firstX가 계속 0이니깐 안 움직이지;;
   if (key === 'a' || key === 'ㅁ') {
-    posX = posX - move;
+    firstX = -1;
+    firstY = 0;
   } else if (key === 'd' || key === 'ㅇ') {
-    posX = posX + move;
+    firstX = 1;
+    firstY = 0;
   } else if (key === 'w' || key === 'ㅈ') {
-    posY = posY - move;
+    firstX = 0;
+    firstY = -1;
   } else if (key === 's' || key === 'ㄴ') {
-    posY = posY + move;
+    firstX = 0;
+    firstY = 1;
   }
   // console.log('키 이름:', key, '키 번호', keyCode);
 }
