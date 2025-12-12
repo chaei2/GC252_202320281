@@ -57,6 +57,17 @@ let barPosX;
 let barPosY;
 let barRound = 30;
 
+// 하트 만들기, 그리고 한 번에 나오는 수는 2개 한정, 크키, 색 필요
+
+let heart = [];
+
+let heartPalette = ['#FA6868', '#FFCDC9', '#BB8ED0', '#F5C857'];
+let heartRandomColour;
+let heartPosX;
+let heartPosY;
+
+// 타이머 시간이 다되면 아웃인데 아직 구현 못함
+
 // INITIAL = 초기의 / 대문자로 명명하는 이유: 바꿀 일 없는 애는 그냥 쐐기 박음(그래야 가독성 좋으니깐..? 아마도)
 // 전역 함수= 프로그램 전체에서 사용 가능한 변수
 // 지역 함수 특정 함수 내에서만 사용 가능한 변수
@@ -116,10 +127,31 @@ function setup() {
   firstY = 0;
 
   barX = INITIAL_W / 2;
+  heartRandomColour = random(heartPalette);
 }
 
 function draw() {
   background('black');
+  // 하트 만들기
+  // 아 모양은 다 만들고 나중에 그 자체를 랜덤으로 돌리면 될듯!
+  //
+  heartPosX = random(0, INITIAL_W);
+  heartPosY = random(0, INITIAL_H);
+  // console.log('heartPosX', heartPosX);
+  fill(heartPalette);
+  noStroke();
+  // 하트..? 왜 안 보이지
+  push();
+  translate(heartPosX, heartPosY);
+  vertex(0, 0);
+  curveVertex(5, -5);
+  curveVertex(5, 0);
+  curveVertex(0, 10);
+  curveVertex(-5, 0);
+  curveVertex(-5, 5);
+  vertex(0, 0);
+
+  pop();
 
   // 아 키 코드 넣어야 작동함
   // keyisdown은 참 거짓이 아니라 키 코드를 넣어야 하는데, 그게 이진법에서 변환한 코드에서 일시적으로 a를 눌렀을때 보이는 거 확인해야함
@@ -146,6 +178,7 @@ function draw() {
 
   // 주기는 3초 중 2초눈 보임 나머지 1초는 멈춤
   let timeLook = frameCount % 180;
+  // console.log(timeLook);
   // 뭔가 잘못된거 같지만? 아닌가?
 
   if (timeLook < 120) {
@@ -161,7 +194,11 @@ function draw() {
     textAlign(CENTER);
     textSize(60);
     text('Eating', INITIAL_W / 2, INITIAL_H / 2);
-    console.log(timeLook);
+    textSize(20);
+
+    text(frameCount, INITIAL_W / 2, INITIAL_H / 12);
+
+    // console.log(timeLook);
   } else if (size > 0) {
     background('#ddaaaaff');
     size = size - 0.1;
