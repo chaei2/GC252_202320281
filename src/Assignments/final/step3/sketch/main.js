@@ -173,7 +173,6 @@ function draw() {
 
     textSize(random(50, 80));
     text('Hungry', INITIAL_W / 2, INITIAL_H / 2);
-  }
   } else if (size === 0) {
     textSize(60);
     noStroke();
