@@ -20,7 +20,7 @@ let sizeDown = 0.06;
 
 let palette = [
   '#6AECE1',
-  '#4ccd91ff',
+  '#cd4ccdff',
   '#BB8ED0',
   '#FD7979',
   '#FFEE91',
@@ -207,6 +207,7 @@ function draw() {
   translate(posX, posY);
   // 애 왜 ㅋㅋㅋㅋ 50 설정인거지? 이상하네
   scale(size / 50);
+  3;
   fill(randomColour);
   beginShape();
   vertex(0, 0);
@@ -222,13 +223,12 @@ function draw() {
   pop();
   // 하트 만들기
   // 아 모양은 다 만들고 나중에 그 자체를 랜덤으로 돌리면 될듯!
-  //
   heartPosX = random(0, INITIAL_W);
   heartPosY = random(0, INITIAL_H);
   // console.log('heartPosX', heartPosX);
   fill(heartRandomColour);
   noStroke();
-  // 하트..? 모양이..?왜 안됨  내가 아는 0, 0이 아닌가?
+  // 하트..? 모양이..?왜 안됨 내가 아는 0, 0이 아닌가?
   push();
   translate(heartPosX, heartPosY);
   beginShape();
@@ -240,9 +240,8 @@ function draw() {
   curveVertex(-20, 0);
   curveVertex(-10, 10);
   curveVertex(10, -10);
+  // vertex(0, 0);
 
-  // curveVertex(0, 0);
-  // curveVertex(0, -10);
   endShape(CLOSE);
   pop();
 
