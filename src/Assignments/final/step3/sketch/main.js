@@ -132,26 +132,6 @@ function setup() {
 
 function draw() {
   background('black');
-  // 하트 만들기
-  // 아 모양은 다 만들고 나중에 그 자체를 랜덤으로 돌리면 될듯!
-  //
-  heartPosX = random(0, INITIAL_W);
-  heartPosY = random(0, INITIAL_H);
-  // console.log('heartPosX', heartPosX);
-  fill(heartPalette);
-  noStroke();
-  // 하트..? 왜 안 보이지
-  push();
-  translate(heartPosX, heartPosY);
-  vertex(0, 0);
-  curveVertex(5, -5);
-  curveVertex(5, 0);
-  curveVertex(0, 10);
-  curveVertex(-5, 0);
-  curveVertex(-5, 5);
-  vertex(0, 0);
-
-  pop();
 
   // 아 키 코드 넣어야 작동함
   // keyisdown은 참 거짓이 아니라 키 코드를 넣어야 하는데, 그게 이진법에서 변환한 코드에서 일시적으로 a를 눌렀을때 보이는 거 확인해야함
@@ -239,6 +219,31 @@ function draw() {
   endShape(CLOSE);
   // 기존 코드 혹시 모르니깐
   // circle(posX, posY, size);
+  pop();
+  // 하트 만들기
+  // 아 모양은 다 만들고 나중에 그 자체를 랜덤으로 돌리면 될듯!
+  //
+  heartPosX = random(0, INITIAL_W);
+  heartPosY = random(0, INITIAL_H);
+  // console.log('heartPosX', heartPosX);
+  fill(heartRandomColour);
+  noStroke();
+  // 하트..? 모양이..?왜 안됨  내가 아는 0, 0이 아닌가?
+  push();
+  translate(heartPosX, heartPosY);
+  beginShape();
+  vertex(0, 0);
+  curveVertex(10, -10);
+  curveVertex(20, 0);
+  curveVertex(0, 20);
+  curveVertex(-20, 0);
+  curveVertex(-20, 0);
+  curveVertex(-10, 10);
+  curveVertex(10, -10);
+
+  // curveVertex(0, 0);
+  // curveVertex(0, -10);
+  endShape(CLOSE);
   pop();
 
   // 벽에 부딪히면 옆에서 나오는 코드
