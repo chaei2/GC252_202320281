@@ -188,7 +188,6 @@ function draw() {
 
     // 이게 문제인거 같은데, 일단 나중에 고치고, 바부터 만들어야..
     fill('lightgreen');
-    // barX;
     noStroke();
     textFont('Boldonse');
     textAlign(CENTER);
