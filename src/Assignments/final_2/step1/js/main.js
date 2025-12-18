@@ -3,8 +3,8 @@ const canvasContainer = document.getElementById('canvas-container');
 let render;
 
 // 시계 만들기: 타일로..? 해보기 도전! 일단 시계 원리 해보기
-const INITIAL_W = 1000;
-const INITIAL_H = 400;
+const INITIAL_W = 275;
+const INITIAL_H = 200;
 const INITIAL_RATIO = INITIAL_W / INITIAL_H;
 
 // 일단 현재 상태를 false로 해놓기
@@ -24,7 +24,7 @@ const IMGS = {
   8: [1, 4, 1],
   9: [5, 4, 1],
   '-': [10, 9, 10],
-  false: [10, 10, 10],
+  ' ': [10, 10, 10],
 };
 
 let tileImgs = [];
@@ -47,6 +47,63 @@ function setup() {
   }).observe(canvasContainer);
 }
 
+// 문자열, x, y, 가로 사이즈,세로 사이즈 넣고, 문자열간의 갭을 주는데,,,.... 이미지 문자열이 있으면 넣고 없으면 빈칸으로 남겨라는거임 어래이로 넣은거 꺼내서 쓰는거임 ㅇㅇ 널 병합 연산자임
+// 삼항 연산자 조건 ? A : B, ??는 그냥 널 병합 연산자
+// a ?? b -> a가 null도 아니고 undefined도 아니면 a 그 외는 b
+function drawImage(charater, x, y, sizeW, sizeH) {
+  const ids = IMGS[charater] ?? IMGS[' '];
+  for (let idx = 0; idx < 3; idx++) {
+    // 이미지 하나에 대한 사이즈 고려
+    image(tileImgs[ids[idx]], x + idx * sizeW, y, sizeW, sizeH);
+  }
+}
+
 function draw() {
   background(0);
+  const blank = 'false';
+  // 문자열의 총 길이가 2가되도록 앞부분ㅂ에 '0'을 채움 예)"09"
+  const hh = String(hour()).padStart(2, '0');
+  const mm = String(minute()).padStart(2, '0');
+  const ss = String(second()).padStart(2, '0');
+
+  const s = second();
+  const clockH = `${hh}`;
+  const clockD = '-';
+  const clockM = `${mm}`;
+  const clockS = `${ss}`;
+
+  let x = 0;
+  let y = 0;
+
+  // ..? 굳이 바꿀 필요가 있나 으으음?일단 뭔가 이상한디
+  // 전체 너비에서 뺴는거면 ㅓ...? ㅇㅂㅇ)..? 아직 뺄 필요 없는거 같은디 아마도
+  let tileW = 10;
+  let tileH = 50;
+  let gap = 0;
+
+  for (let charater of clockH) {
+    drawImage(charater, x, y, tileW, tileH, gap);
+    x += tileW * 3.5;
+    y += tileH;
+  }
+  for (let charater of clockD) {
+    drawImage(charater, x, y, tileW, tileH, gap);
+    x += tileW * 3.5;
+    y -= tileH;
+  }
+  for (let charater of clockM) {
+    drawImage(charater, x, y, tileW, tileH, gap);
+    x += tileW * 3.5;
+    y += tileH;
+  }
+  for (let charater of clockD) {
+    drawImage(charater, x, y, tileW, tileH, gap);
+    x += tileW * 3.5;
+    y -= tileH;
+  }
+  for (let charater of clockS) {
+    drawImage(charater, x, y, tileW, tileH, gap);
+    x += tileW * 3.5;
+    y -= tileH;
+  }
 }
