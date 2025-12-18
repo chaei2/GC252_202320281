@@ -33,7 +33,8 @@ let tileImgs = [];
 
 function preload() {
   for (let n = 1; n <= 10; n++) {
-    tileImgs[n] = loadImage(`./source/${n}.svg`);
+    // tileImgs[n] = loadImage(`./source/${n}.svg`);
+    tileImgs[n] = loadImage(`./source2/${n}.svg`);
   }
 }
 
