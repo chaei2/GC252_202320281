@@ -49,7 +49,13 @@ const IMGS = {
 let tileImgs = [];
 
 let colour;
+let colour2;
+let colour3;
+let colour4;
 let randomColour;
+let randomColour2;
+let randomColour3;
+let randomColour4;
 
 function preload() {
   for (let n = 1; n <= 10; n++) {
@@ -76,7 +82,35 @@ function setup() {
     '#efcdffff',
     '#fff4d6ff',
   ];
+  colour2 = [
+    '#b1ffa8ff',
+    '#78f896ff',
+    '#889effff',
+    '#fff5a8ff',
+    '#ffcddaff',
+    '#9dbaffff',
+  ];
+  colour3 = [
+    '#b7a8ffff',
+    '#d5ff62ff',
+    '#889effff',
+    '#fff5a8ff',
+    '#ffcddaff',
+    '#9dbaffff',
+  ];
+  colour4 = [
+    '#d8a8ffff',
+    '#78e7f8ff',
+    '#ffbff2ff',
+    '#fff5a8ff',
+    '#ffcdf7ff',
+    '#ef9dffff',
+  ];
+
   randomColour = random(colour);
+  randomColour2 = random(colour2);
+  randomColour3 = random(colour3);
+  randomColour4 = random(colour4);
 }
 
 // 문자열, x, y, 가로 사이즈,세로 사이즈 넣고, 문자열간의 갭을 주는데,,,.... 이미지 문자열이 있으면 넣고 없으면 빈칸으로 남겨라는거임 어래이로 넣은거 꺼내서 쓰는거임 ㅇㅇ 널 병합 연산자임
@@ -93,7 +127,23 @@ function drawImage(charater, x, y, sizeW, sizeH) {
 
 function draw() {
   background(randomColour);
-  const blank = 'false';
+  let tileW = 20;
+  let tileH = 100;
+
+  // rectMode(CENTER);
+  noStroke();
+  rect(0, 0, tileW * 6 + tileW / 2, INITIAL_H);
+  fill(randomColour2);
+
+  noStroke();
+  rect(210, 0, tileW * 6 + tileW / 2, INITIAL_H);
+  fill(randomColour3);
+
+  noStroke();
+  rect(420, 0, tileW * 6 + tileW / 2, INITIAL_H);
+  fill(randomColour4);
+
+  // const blank = 'false';
   // 문자열의 총 길이가 2가되도록 앞부분ㅂ에 '0'을 채움 예)"09"
   const hh = String(hour()).padStart(2, '0');
   const mm = String(minute()).padStart(2, '0');
@@ -134,8 +184,6 @@ function draw() {
 
   // ..? 굳이 바꿀 필요가 있나 으으음?일단 뭔가 이상한디
   // 전체 너비에서 뺴는거면 ㅓ...? ㅇㅂㅇ)..? 아직 뺄 필요 없는거 같은디 아마도
-  let tileW = 20;
-  let tileH = 100;
 
   // 중력이랑 스피드 다 더해서 하나로
   const floorOffset = INITIAL_H - tileH * 2;
