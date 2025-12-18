@@ -21,6 +21,13 @@ let reH = null;
 let reM = null;
 let reS = null;
 
+let dragTarget = null;
+let dragOffsetY = 0;
+
+let curYH = 0,
+  curYM = 0,
+  curYS = 0;
+
 // let dropY = 0;
 let dropYH = 0;
 let dropYM = 0;
@@ -30,6 +37,14 @@ let dropYS = 0;
 let dropSpeedH = 3.18;
 let dropSpeedM = 3.18;
 let dropSpeedS = 3.18;
+
+let tileW = 20;
+let tileH = 100;
+
+// 바닥에서 타일 중간 빼줘야함
+let bottomY = INITIAL_H / 2 - tileH / 2;
+
+const floorOffset = INITIAL_H - tileH * 2;
 
 const IMGS = {
   0: [1, 2, 1],
@@ -83,12 +98,12 @@ function setup() {
     '#fff4d6ff',
   ];
   colour2 = [
-    '#b1ffa8ff',
-    '#78f896ff',
-    '#889effff',
-    '#fff5a8ff',
-    '#ffcddaff',
-    '#9dbaffff',
+    '#73a06eff',
+    '#62946eff',
+    '#95a4d8ff',
+    '#f7ce9dff',
+    '#e7a3b7ff',
+    '#8694b5ff',
   ];
   colour3 = [
     '#b7a8ffff',
@@ -127,8 +142,6 @@ function drawImage(charater, x, y, sizeW, sizeH) {
 
 function draw() {
   background(randomColour);
-  let tileW = 20;
-  let tileH = 100;
 
   // rectMode(CENTER);
   noStroke();
@@ -174,28 +187,31 @@ function draw() {
   const clockS = `${ss}`;
 
   let x = 0;
-  let bottomY = INITIAL_H / 2 - 50;
 
   let yH = bottomY + dropYH;
   let yM = bottomY + dropYM;
   let yS = bottomY + dropYS;
+  curYH = yH;
+  curYM = yM;
+  curYS = yS;
 
   let y = bottomY;
 
   // ..? 굳이 바꿀 필요가 있나 으으음?일단 뭔가 이상한디
   // 전체 너비에서 뺴는거면 ㅓ...? ㅇㅂㅇ)..? 아직 뺄 필요 없는거 같은디 아마도
 
-  // 중력이랑 스피드 다 더해서 하나로
-  const floorOffset = INITIAL_H - tileH * 2;
-
-  dropSpeedH += gravity * 0.003;
-  dropYH += dropSpeedH;
-
-  dropSpeedM += gravity * 0.01;
-  dropYM += dropSpeedM;
-
-  dropSpeedS += gravity * 0.5;
-  dropYS += dropSpeedS;
+  if (dragTarget !== 'H') {
+    dropSpeedH += gravity * 0.01;
+    dropYH += dropSpeedH;
+  }
+  if (dragTarget !== 'M') {
+    dropSpeedM += gravity * 0.1;
+    dropYM += dropSpeedM;
+  }
+  if (dragTarget !== 'S') {
+    dropSpeedS += gravity * 0.5;
+    dropYS += dropSpeedS;
+  }
 
   if (dropYH > floorOffset) {
     dropYH = floorOffset;
@@ -249,6 +265,69 @@ function draw() {
     y += tileH;
   }
 }
+// 타일 세트 너비
+let tilesW = tileW * 3.5 * 2;
 
 // 일단 나중에 만들거 놔두고...
-function mousePressed() {}
+// Y만 움직이게 할
+// ㅇㅂㅇ)x안 넣었다가 난리남..
+// 마우로 잡았을때, 스피드 0으로, 놓으면 돌아가게
+function mousePressed() {
+  if (
+    // mouseY >= curYH &&
+    // mouseY <= curYH + tileH
+
+    mouseX >= 0 &&
+    mouseX <= 0 + tilesW &&
+    mouseY >= curYH &&
+    mouseY <= curYH + tileH
+  ) {
+    dragTarget = 'H';
+    dragOffsetY = mouseY - curYH;
+    dropSpeedH = 0;
+    return;
+  }
+
+  if (
+    mouseX >= 210 &&
+    mouseX <= 210 + tilesW &&
+    mouseY >= curYM &&
+    mouseY <= curYM + tileH
+  ) {
+    dragTarget = 'M';
+    dragOffsetY = mouseY - curYM;
+    dropSpeedM = 0;
+    return;
+  }
+
+  if (
+    mouseX >= 420 &&
+    mouseX <= 420 + tilesW &&
+    mouseY >= curYS &&
+    mouseY <= curYS + tileH
+  ) {
+    dragTarget = 'S';
+    dragOffsetY = mouseY - curYS;
+    dropSpeedS = 0;
+    return;
+  }
+}
+// 마우스잡기만 하니깐.... 드래그도 추가;
+
+function mouseDragged() {
+  if (!dragTarget) return;
+
+  // 드래그-> 마우스Y 좌표에서 bottomY 빼는 이유가 yH = bottomY + dropYH;더해서 그럼..; ㅇㄴ 근데 계속보니깐 이상한데 아닌가
+  let newDropY = mouseY - dragOffsetY - bottomY;
+
+  if (dragTarget === 'H') dropYH = newDropY;
+  if (dragTarget === 'M') dropYM = newDropY;
+  if (dragTarget === 'S') dropYS = newDropY;
+}
+
+function mouseReleased() {
+  // null안해주면 안됨;; 얘가 안 내려옴.. 상태를 다시 null로...
+  dragTarget = null;
+}
+
+// 마우스가 h영역 안, 블록 높이 안 일떄 실행
