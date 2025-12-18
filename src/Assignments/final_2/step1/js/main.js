@@ -3,10 +3,10 @@ const canvasContainer = document.getElementById('canvas-container');
 let render;
 
 let dropY = 0;
-let dropSpeed = 5;
+let dropSpeed = 3.18;
 // 시계 만들기: 타일로..? 해보기 도전! 일단 시계 원리 해보기
 const INITIAL_W = 275 * 2;
-const INITIAL_H = 300;
+const INITIAL_H = 100;
 const INITIAL_RATIO = INITIAL_W / INITIAL_H;
 
 // 일단 현재 상태를 false로 해놓기
@@ -82,6 +82,10 @@ function draw() {
   // 전체 너비에서 뺴는거면 ㅓ...? ㅇㅂㅇ)..? 아직 뺄 필요 없는거 같은디 아마도
   let tileW = 20;
   let tileH = 100;
+
+  dropY += dropSpeed;
+  if (dropY > INITIAL_H) dropY = y - INITIAL_H;
+
   // ㅇㄴ 갭이 필요한가..?
   // gap = 0;
 
@@ -106,12 +110,8 @@ function draw() {
     // y -= tileH;
   }
 
-  dropY += dropSpeed;
-  if (dropY > INITIAL_H) dropY = y - INITIAL_H;
-
   for (let charater of clockS) {
     drawImage(charater, x, y + dropY, tileW, tileH);
     x += tileW * 3.5;
-    // y -= tileH;
   }
 }
