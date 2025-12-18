@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+*::after, *::before {
+  box-sizing: border-box;
+}
+
+.section {
+  padding-inline: 1.5rem;
+}
+
+.container {
+  max-width: 50rem;
+  margin-inline: auto;
+}
+
+#canvas {
+  margin-inline: auto;
+}

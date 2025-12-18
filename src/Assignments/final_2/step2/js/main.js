@@ -2,8 +2,6 @@ const canvasContainer = document.getElementById('canvas-container');
 // const renderer로 하면 문법 자체가 오류남, 사유: 나중에 값 넣기 불가임
 let render;
 
-let dropY = 0;
-let dropSpeed = 3.18;
 // 시계 만들기: 타일로..? 해보기 도전! 일단 시계 원리 해보기
 const INITIAL_W = 275 * 2;
 const INITIAL_H = 300;
@@ -15,7 +13,24 @@ const INITIAL_RATIO = INITIAL_W / INITIAL_H;
 // let state = false;
 // state가 음 false인건 상관 없나..? 어차피 그냥 숫자 만드는건데..
 
-// d
+let gravity = 0.35;
+let bounce = 0.65;
+
+// 시 분 초 다 다르게 떨어질려면... 일단 변수 나눠...
+let reH = null;
+let reM = null;
+let reS = null;
+
+// let dropY = 0;
+let dropYH = 0;
+let dropYM = 0;
+let dropYS = 0;
+
+// let dropSpeed = 3.18;
+let dropSpeedH = 3.18;
+let dropSpeedM = 3.18;
+let dropSpeedS = 3.18;
+
 const IMGS = {
   0: [1, 2, 1],
   1: [10, 10, 1],
@@ -84,6 +99,23 @@ function draw() {
   const mm = String(minute()).padStart(2, '0');
   const ss = String(second()).padStart(2, '0');
 
+  // 어 =..?
+  if (hh !== reH) {
+    reH = hh;
+    dropYH = 0;
+    dropSpeedH = 0;
+  }
+  if (mm !== reM) {
+    reM = mm;
+    dropYM = 0;
+    dropSpeedM = 0;
+  }
+  if (ss !== reS) {
+    reS = ss;
+    dropYS = 0;
+    dropSpeedS = 0;
+  }
+
   const s = second();
   const clockNone = ' ';
   const clockH = `${hh}`;
@@ -92,21 +124,51 @@ function draw() {
   const clockS = `${ss}`;
 
   let x = 0;
-  let y = INITIAL_H / 2 - 50;
+  let bottomY = INITIAL_H / 2 - 50;
+
+  let yH = bottomY + dropYH;
+  let yM = bottomY + dropYM;
+  let yS = bottomY + dropYS;
+
+  let y = bottomY;
 
   // ..? 굳이 바꿀 필요가 있나 으으음?일단 뭔가 이상한디
   // 전체 너비에서 뺴는거면 ㅓ...? ㅇㅂㅇ)..? 아직 뺄 필요 없는거 같은디 아마도
   let tileW = 20;
   let tileH = 100;
 
-  dropY += dropSpeed;
-  if (dropY > INITIAL_H) dropY = y - INITIAL_H;
+  // 중력이랑 스피드 다 더해서 하나로
+  const floorOffset = INITIAL_H - tileH * 2;
+
+  dropSpeedH += gravity * 0.003;
+  dropYH += dropSpeedH;
+
+  dropSpeedM += gravity * 0.01;
+  dropYM += dropSpeedM;
+
+  dropSpeedS += gravity * 0.5;
+  dropYS += dropSpeedS;
+
+  if (dropYH > floorOffset) {
+    dropYH = floorOffset;
+    dropSpeedH *= -bounce;
+  }
+
+  if (dropYM > floorOffset) {
+    dropYM = floorOffset;
+    dropSpeedM *= -bounce;
+  }
+
+  if (dropYS > floorOffset) {
+    dropYS = floorOffset;
+    dropSpeedS *= -bounce;
+  }
 
   // ㅇㄴ 갭이 필요한가..?
   // gap = 0;
 
   for (let charater of clockH) {
-    drawImage(charater, x, y, tileW, tileH);
+    drawImage(charater, x, yH, tileW, tileH);
     x += tileW * 3.5;
     // y += tileH;
   }
@@ -118,7 +180,7 @@ function draw() {
   }
 
   for (let charater of clockM) {
-    drawImage(charater, x, y, tileW, tileH);
+    drawImage(charater, x, yM, tileW, tileH);
     x += tileW * 3.5;
     // y += tileH;
   }
@@ -130,7 +192,7 @@ function draw() {
   }
 
   for (let charater of clockS) {
-    drawImage(charater, x, y + dropY, tileW, tileH);
+    drawImage(charater, x, yS, tileW, tileH);
     x += tileW * 3.5;
   }
   for (let charater of clockNone) {
@@ -140,4 +202,5 @@ function draw() {
   }
 }
 
+// 일단 나중에 만들거 놔두고...
 function mousePressed() {}
