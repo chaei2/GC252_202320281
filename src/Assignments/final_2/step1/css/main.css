@@ -1,13 +1,9 @@
 * {
   box-sizing: border-box;
-  &::after,
-  &::before {
-    box-sizing: border-box;
-  }
 }
-// $background-color:
-
-// scss ->들여쓰기, 정의 내리기 등 다양하게 가능
+*::after, *::before {
+  box-sizing: border-box;
+}
 
 .section {
   padding-inline: 1.5rem;
