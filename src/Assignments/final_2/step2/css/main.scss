@@ -34,10 +34,9 @@ body {
 }
 
 .whiteText {
-  font-size: 3rem;
   text-align: center;
   font-family: RoundedFixedsys;
-
+  font-size: 3rem;
   color: #00ffc8;
 }
 .section {
@@ -66,10 +65,16 @@ body {
 }
 
 .h4Text {
-  font-size: 2rem;
+  font-size: 3rem;
   font-family: RoundedFixedsys;
 }
 
 #canvas {
   margin-inline: auto;
+}
+
+@media screen and (max-width: 46.25rem) {
+  .h4Text {
+    font-size: 1.5rem;
+  }
 }
