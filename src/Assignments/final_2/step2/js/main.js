@@ -67,10 +67,10 @@ let colour;
 let colour2;
 let colour3;
 let colour4;
-let randomColour;
-let randomColour2;
-let randomColour3;
-let randomColour4;
+// let randomColour;
+// let randomColour2;
+// let randomColour3;
+// let randomColour4;
 
 function preload() {
   for (let n = 1; n <= 10; n++) {
@@ -89,43 +89,15 @@ function setup() {
     render.elt.style.width = `${containerWidth}px`;
     render.elt.style.height = `${containerWidth / INITIAL_RATIO}px`;
   }).observe(canvasContainer);
-  colour = [
-    '#a8fff8ff',
-    '#f878a1ff',
-    '#dae1ffff',
-    '#ffa8f5ff',
-    '#efcdffff',
-    '#fff4d6ff',
-  ];
-  colour2 = [
-    '#73a06eff',
-    '#62946eff',
-    '#95a4d8ff',
-    '#f7ce9dff',
-    '#e7a3b7ff',
-    '#8694b5ff',
-  ];
-  colour3 = [
-    '#b7a8ffff',
-    '#d5ff62ff',
-    '#889effff',
-    '#fff5a8ff',
-    '#ffcddaff',
-    '#9dbaffff',
-  ];
-  colour4 = [
-    '#d8a8ffff',
-    '#78e7f8ff',
-    '#ffbff2ff',
-    '#fff5a8ff',
-    '#ffcdf7ff',
-    '#ef9dffff',
-  ];
+  colour = '#ff92b5ff';
+  colour2 = '#fff3a7ff';
+  colour3 = '#7f65ffff';
+  colour4 = '#a7ff9dff';
 
-  randomColour = random(colour);
-  randomColour2 = random(colour2);
-  randomColour3 = random(colour3);
-  randomColour4 = random(colour4);
+  // randomColour = random(colour);
+  // randomColour2 = random(colour2);
+  // randomColour3 = random(colour3);
+  // randomColour4 = random(colour4);
 }
 
 // 문자열, x, y, 가로 사이즈,세로 사이즈 넣고, 문자열간의 갭을 주는데,,,.... 이미지 문자열이 있으면 넣고 없으면 빈칸으로 남겨라는거임 어래이로 넣은거 꺼내서 쓰는거임 ㅇㅇ 널 병합 연산자임
@@ -141,20 +113,20 @@ function drawImage(charater, x, y, sizeW, sizeH) {
 }
 
 function draw() {
-  background(randomColour);
+  background(colour);
 
   // rectMode(CENTER);
   noStroke();
   rect(0, 0, tileW * 6 + tileW / 2, INITIAL_H);
-  fill(randomColour2);
+  fill(colour2);
 
   noStroke();
   rect(210, 0, tileW * 6 + tileW / 2, INITIAL_H);
-  fill(randomColour3);
+  fill(colour3);
 
   noStroke();
   rect(420, 0, tileW * 6 + tileW / 2, INITIAL_H);
-  fill(randomColour4);
+  fill(colour4);
 
   // const blank = 'false';
   // 문자열의 총 길이가 2가되도록 앞부분ㅂ에 '0'을 채움 예)"09"
