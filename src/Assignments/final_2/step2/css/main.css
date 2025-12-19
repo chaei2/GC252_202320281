@@ -82,12 +82,6 @@ textarea:not([rows]) {
   scroll-margin-block: 5ex;
 }
 
-@font-face {
-  font-family: "RoundedFixedsys";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff") format("woff");
-  font-weight: normal;
-  font-display: swap;
-}
 * {
   box-sizing: border-box;
 }
@@ -113,42 +107,11 @@ body {
   color: #00ffc8;
 }
 
-.section {
-  padding-inline: 1.5rem;
-}
-
 .container {
   max-width: 50rem;
   margin-inline: auto;
 }
 
-.pink {
-  color: #ff8bec;
-}
-
-.orange {
-  color: #ffc56f;
-}
-
-.purple {
-  color: #b56fff;
-}
-
-.padding {
-  padding: 1rem;
-}
-
-.h4Text {
-  font-size: 3rem;
-  font-family: RoundedFixedsys;
-}
-
 #canvas {
   margin-inline: auto;
-}
-
-@media screen and (max-width: 46.25rem) {
-  .h4Text {
-    font-size: 1.5rem;
-  }
 }

@@ -1,12 +1,12 @@
 @use './default';
 
-@font-face {
-  font-family: 'RoundedFixedsys';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
-    format('woff');
-  font-weight: normal;
-  font-display: swap;
-}
+// @font-face {
+//   font-family: 'RoundedFixedsys';
+//   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
+//     format('woff');
+//   font-weight: normal;
+//   font-display: swap;
+// }
 
 * {
   box-sizing: border-box;
@@ -40,7 +40,7 @@ body {
   color: #00ffc8;
 }
 .section {
-  padding-inline: 1.5rem;
+  // padding-inline: 1.5rem;
 }
 
 .container {
@@ -48,33 +48,33 @@ body {
   margin-inline: auto;
 }
 
-.pink {
-  color: #ff8bec;
-}
+// .pink {
+//   color: #ff8bec;
+// }
 
-.orange {
-  color: #ffc56f;
-}
+// .orange {
+//   color: #ffc56f;
+// }
 
-.purple {
-  color: #b56fff;
-}
+// .purple {
+//   color: #b56fff;
+// }
 
-.padding {
-  padding: 1rem;
-}
+// .padding {
+//   padding: 1rem;
+// }
 
-.h4Text {
-  font-size: 3rem;
-  font-family: RoundedFixedsys;
-}
+// .h4Text {
+//   font-size: 3rem;
+//   font-family: RoundedFixedsys;
+// }
 
 #canvas {
   margin-inline: auto;
 }
 
-@media screen and (max-width: 46.25rem) {
-  .h4Text {
-    font-size: 1.5rem;
-  }
-}
+// @media screen and (max-width: 46.25rem) {
+//   .h4Text {
+//     font-size: 1.5rem;
+//   }
+// }
