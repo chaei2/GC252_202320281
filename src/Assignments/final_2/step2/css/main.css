@@ -1,8 +1,116 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: none;
+     -moz-text-size-adjust: none;
+          text-size-adjust: none;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: 1.1;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  word-break: keep-all;
+  text-wrap: balance;
+}
+
+a:not([class]) {
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+img,
+picture,
+canvas,
+svg,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+:target {
+  scroll-margin-block: 5ex;
+}
+
+@font-face {
+  font-family: "RoundedFixedsys";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff") format("woff");
+  font-weight: normal;
+  font-display: swap;
+}
 * {
   box-sizing: border-box;
 }
 *::after, *::before {
   box-sizing: border-box;
+}
+
+body {
+  margin: 5rem;
+  background-color: rgb(98, 0, 255);
+}
+
+.gird {
+  display: grid;
+  text-align: center;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.whiteText {
+  font-size: 3rem;
+  text-align: center;
+  font-family: RoundedFixedsys;
+  color: #00ffc8;
 }
 
 .section {
@@ -12,6 +120,27 @@
 .container {
   max-width: 50rem;
   margin-inline: auto;
+}
+
+.pink {
+  color: #ff8bec;
+}
+
+.orange {
+  color: #ffc56f;
+}
+
+.purple {
+  color: #b56fff;
+}
+
+.padding {
+  padding: 1rem;
+}
+
+.h4Text {
+  font-size: 2rem;
+  font-family: RoundedFixedsys;
 }
 
 #canvas {

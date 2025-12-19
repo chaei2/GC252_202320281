@@ -1,3 +1,13 @@
+@use './default';
+
+@font-face {
+  font-family: 'RoundedFixedsys';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
+    format('woff');
+  font-weight: normal;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
   &::after,
@@ -9,6 +19,27 @@
 
 // scss ->들여쓰기, 정의 내리기 등 다양하게 가능
 
+body {
+  margin: 5rem;
+  // background: linear-gradient(rgb(0, 21, 95), rgb(0, 61, 102));
+  background-color: rgb(98, 0, 255);
+  // background-color: rgb(0, 20, 92);
+}
+
+.gird {
+  display: grid;
+  text-align: center;
+  // margin-inline: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.whiteText {
+  font-size: 3rem;
+  text-align: center;
+  font-family: RoundedFixedsys;
+
+  color: #00ffc8;
+}
 .section {
   padding-inline: 1.5rem;
 }
@@ -16,6 +47,27 @@
 .container {
   max-width: 50rem;
   margin-inline: auto;
+}
+
+.pink {
+  color: #ff8bec;
+}
+
+.orange {
+  color: #ffc56f;
+}
+
+.purple {
+  color: #b56fff;
+}
+
+.padding {
+  padding: 1rem;
+}
+
+.h4Text {
+  font-size: 2rem;
+  font-family: RoundedFixedsys;
 }
 
 #canvas {

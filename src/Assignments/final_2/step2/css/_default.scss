@@ -1,0 +1,99 @@
+// * == 모든 태그한테 적용해볼게
+// ::before는 적용 이전에도
+// 기본이 content 박스로 되어있음
+// 앞을로 사이즌 border-box로 바꿀거야임
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// moz = 사파리 쪽, webkit = 크롬 쪽
+// 애플은 어떻게 만들고 등등이 다 다름
+
+// text-size-adjust: none는 사파리가 조금 심한데, 사이즈를 지 멋대로 바꿈
+
+// 마진은 더해지는게 아님-> 마진은 골통터지기 떄문에 잘 안 씀
+html {
+  text-size-adjust: none;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+// v = vewport에 대한 사이즈를 말하는 것임
+// 창 크기 만큼 보장하라 이 말임
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: 1.1;
+}
+
+// word-break: keep-all은 한글 단어상황에서 잘리지 않았음할때 쓰면 좋음
+h1,
+h2,
+h3,
+h4 {
+  word-break: keep-all;
+  text-wrap: balance;
+}
+
+// 넣어도 그만
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+// 그림 넣어주는 태그가 기본적으로 인라인 속성임
+// 영문에서 미묘한 사이즈가 있어서 왠만해서 넣음
+// 100%
+img,
+picture,
+canvas,
+svg,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+// 나머지들은 어떻게 해도 비주얼에 큰 차이가 없음
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+:target {
+  scroll-margin-block: 5ex;
+}
